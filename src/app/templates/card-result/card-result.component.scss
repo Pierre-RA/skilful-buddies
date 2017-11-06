@@ -1,0 +1,42 @@
+.user-card {
+  border: solid rgb(245,245,245) 1px;
+  box-shadow: 1px 1px 0 rgba(55,55,55,0.1);
+  padding: 5px;
+  overflow: hidden;
+  clear: both;
+  .image {
+    display: block;
+    float: left;
+    margin: 0;
+    font-size: 0.9em;
+    text-align: center;
+    img {
+      display: block;
+      height: 120px;
+      margin: 10px;
+      box-shadow: 0 0 1px rgba(0,0,0,0.4);
+    }
+  }
+  .skills {
+    color: grey;
+    margin: 0;
+  }
+  .quote {
+    text-align: justify;
+    font-style: italic;
+    margin: 0;
+  }
+  .content {
+    overflow: hidden;
+    clear: both;
+  }
+  hr {
+    width: 40%;
+    margin: 10px auto;
+  }
+  .grey {
+    color: grey;
+    margin: 0;
+    padding-bottom: 0;
+  }
+}

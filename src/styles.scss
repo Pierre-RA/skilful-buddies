@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Caveat:700|Pacifico');
+
+.caveat {
+  font-family: 'Caveat', cursive;
+}
+
+ngb-typeahead-window {
+  width: 100%;
+}

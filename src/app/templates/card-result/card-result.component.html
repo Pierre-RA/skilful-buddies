@@ -1,0 +1,27 @@
+<div class="user-card">
+  <div class="content">
+    <p class="image">
+      <img src="{{card.img}}" />
+      <a [routerLink]="['/']">{{card.place}}</a>
+    </p>
+    <h2>{{card.name}}</h2>
+    <p class="skills">
+      Current searched skill: <a [routerLink]="['/']" class="badge badge-warning">developer</a>
+    </p>
+    <p class="quote">
+      "{{card.tagline}}"
+    </p>
+  </div>
+  <hr />
+  <p class="text-center">
+    <button class="btn btn-warning mx-3">
+      <i class="fa fa-link" aria-hidden="true"></i>
+      Connect
+    </button>
+    <button class="btn btn-secondary mx-3">Get introduced</button>
+  </p>
+  <p class="text-center grey">
+    You can be introduced to {{card.name}} with
+    <a [routerLink]="['/']" *ngFor="let friend of card.friends">{{friend}}</a>.
+  </p>
+</div>
