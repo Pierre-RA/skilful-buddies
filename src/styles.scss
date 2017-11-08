@@ -1,10 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Caveat:700|Pacifico');
 
+$google: rgb(211, 72, 54);
+$google-dark: rgb(201, 62, 44);
+$facebook: rgb(59, 89, 152);
+$facebook-dark: rgb(49, 79, 142);
+$twitter: rgb(85, 172, 238);
+$twitter-dark: rgb(75, 162, 228);
+$linkedin: rgb(0, 123, 181);
+$linkedin-dark: rgb(0, 113, 171);
+
 .caveat {
   font-family: 'Caveat', cursive;
 }
 
+.skilful-buddies {
+  font-family: 'Caveat', cursive;
+  line-height: 55px;
+  color: orangered;
+  text-shadow: 1px 0 0 rgba(0,0,0,0.4);
+}
+
 ngb-typeahead-window {
   width: 100%;
+}
+
+.grey {
+  color: grey;
+}
+
+.google,
+.hover-google:hover {
+  color: $google;
+}
+
+.facebook,
+.hover-facebook:hover {
+  color: $facebook;
+}
+
+.twitter,
+.hover-twitter:hover {
+  color: $twitter;
+}
+
+.linkedin,
+.hover-linkedin:hover {
+  color: $linkedin;
+}
+
+.bg-google {
+  background-color: $google;
+  transition: opacity .15s linear;
+}
+.bg-google:hover {
+  background-color: $google-dark;
+}
+
+.bg-facebook {
+  background-color: $facebook;
+  transition: opacity .15s linear;
+}
+.bg-facebook:hover {
+  background-color: $facebook-dark;
+}
+
+.bg-twitter {
+  background-color: $twitter;
+  transition: opacity .15s linear;
+}
+.bg-twitter:hover {
+  background-color: $twitter-dark;
+}
+
+.bg-linkedin {
+  background-color: $linkedin;
+  transition: opacity .15s linear;
+}
+.bg-linkedin:hover {
+  background-color: $linkedin-dark;
 }
