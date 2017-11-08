@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Contact } from '../../shared';
+
 @Component({
   selector: 'template-card-result',
   templateUrl: './card-result.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardResultComponent implements OnInit {
 
-  @Input('card') card: Object;
+  @Input('card') card: Contact;
 
   constructor() { }
 

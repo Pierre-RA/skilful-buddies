@@ -8,6 +8,7 @@
           <input type="text" class="form-control form-control-lg"
             formControlName="search"
             [ngbTypeahead]="searchResult"
+            (selectItem)="itemSelected($event)"
             placeholder="Find your friend's skilful buddies">
           <span class="input-group-btn">
             <button class="btn btn-warning">

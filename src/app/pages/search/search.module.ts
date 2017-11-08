@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchComponent } from './search.component';
 import { routing } from './search.routing';
 
+import { SearchService } from '../../shared/search.service';
+
 import { HeaderModule } from '../../templates/header/header.module';
 import { CardResultModule } from '../../templates/card-result/card-result.module';
 
@@ -19,6 +21,7 @@ import { CardResultModule } from '../../templates/card-result/card-result.module
     HeaderModule,
     CardResultModule
   ],
-  declarations: [SearchComponent]
+  declarations: [SearchComponent],
+  providers: [SearchService]
 })
 export class SearchModule { }
