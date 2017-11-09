@@ -3,40 +3,47 @@
     <div class="row justify-content-center bg-white">
       <div class="col-sm-8 my-5">
         <h1 class="text-center">
-          Sign up to
+          {{ value }} to
           <span class="skilful-buddies">Skilful Buddies</span>
         </h1>
         <div class="row my-3 no-gutters">
           <div class="col-sm-6 p-1">
-            <button class="w-100 btn bg-google text-white">
+            <button class="w-100 btn btn-secondary disabled text-white">
               <i class="fa fa-fw fa-lg fa-google-plus" aria-hidden="true"></i>
-              Sign-up with Google
+              {{ value }} with Google
             </button>
           </div>
 
           <div class="col-sm-6 p-1">
-            <button class="w-100 btn bg-facebook text-white">
+            <button class="w-100 btn bg-facebook text-white" (click)="facebookLogin()">
               <i class="fa fa-fw fa-lg fa-facebook" aria-hidden="true"></i>
-              Sign-up with facebook
+              {{ value }} with facebook
             </button>
           </div>
 
           <div class="col-sm-6 p-1">
-            <button class="w-100 btn bg-twitter text-white">
+            <button class="w-100 btn btn-secondary disabled text-white">
               <i class="fa fa-fw fa-lg fa-twitter" aria-hidden="true"></i>
-              Sign-up with twitter
+              {{ value }} with twitter
             </button>
           </div>
 
           <div class="col-sm-6 p-1">
-            <button class="w-100 btn bg-linkedin text-white">
+            <button class="w-100 btn btn-secondary disabled text-white">
               <i class="fa fa-fw fa-lg fa-linkedin" aria-hidden="true"></i>
-              Sign-up with LinkedIn
+              {{ value }} with LinkedIn
             </button>
           </div>
         </div>
         <p class="text-muted text-justify">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <span *ngIf="value == 'Sign in'">
+            Not registered? <a [routerLink]="['/sign-up']">Sign up</a> to Skilful Buddies.
+          </span>
+          <span *ngIf="value == 'Sign up'">
+            Already registered? <a [routerLink]="['/sign-in']"> Sign in</a>.
+          </span>
+          <br />
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
       </div>
     </div>
