@@ -9,10 +9,24 @@
       </a>
     </span>
     <span class="block">
-      <a [routerLink]="['/']" class="icon">
-        Richard Hendricks
-        <img src="/assets/img/richard.jpg" />
-      </a>
+      <div ngbDropdown class="d-inline-block">
+        <button class="no-btn" id="profileLink" ngbDropdownToggle>
+          {{profile.name}}
+          <img [src]="profile.picture" />
+        </button>
+        <div ngbDropdownMenu aria-labelledby="profileLink">
+          <button class="dropdown-item">
+            <i class="fa fa-fw fa-cog" aria-hidden="true"></i>
+            Action 1
+          </button>
+          <button class="dropdown-item" (click)="logout()">
+            <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
+            Sign out
+          </button>
+        </div>
+      </div>
+
+
     </span>
   </div>
   <div class="underline">

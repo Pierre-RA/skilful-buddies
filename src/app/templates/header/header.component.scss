@@ -35,6 +35,14 @@ header {
     padding: 0 10px;
     border-left: $silver solid 2px;
   }
+  .no-btn {
+    background-color: transparent;
+    border: none;
+    height: 55px;
+  }
+  .no-btn:active {
+    outline: none;
+  }
   .underline {
     border-top: $silver 2px solid;
     ul {
