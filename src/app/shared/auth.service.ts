@@ -41,6 +41,7 @@ export class AuthService {
         window.localStorage.setItem('dat', JSON.stringify(res.authResponse));
         this.getProfile();
         this.getPicture();
+        this.getFriendList();
         this.router.navigate(['/']);
       });
   }
@@ -60,6 +61,14 @@ export class AuthService {
       .then((res: any) => {
         window.localStorage.setItem('profile_picture', res['data']['url']);
         console.log('Profile picture', res);
+      });
+  }
+
+  getFriendList(): void {
+    this.fb.api('/me/friends')
+      .then((res: any) => {
+        window.localStorage.setItem('profile_friens', JSON.stringify(res));
+        console.log('Friends', res)
       });
   }
 

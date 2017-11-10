@@ -1,0 +1,55 @@
+{
+  "contacts": [{
+    "id": "1",
+    "name": "Erlich Bachman",
+    "img": "/assets/img/erlich.jpg",
+    "trades": ["mushrooms", "developer"],
+    "tagline": "Today's user wants access to all their files, from all of their devices, instantly. That's why cloud-based is the Holy Grail. But when it comes to audio and video files, they might as well be called Dripbox.",
+    "friends": [5],
+    "place": "San Francisco, CA"
+  }, {
+    "id": "2",
+    "name": "Dinesh Chugtai",
+    "img": "/assets/img/dinesh.jpg",
+    "trades": ["developer"],
+    "tagline": "No, my software's fine. It's 'cause it's running on your s*** hardware.",
+    "friends": [3],
+    "place": "San Francisco, CA",
+    "networks": ["Hooli"]
+  }, {
+    "id": "3",
+    "name": "Gilfoyle Bertram",
+    "img": "/assets/img/gilfoyle.jpg",
+    "trades": ["developer"],
+    "tagline": "But does anyone appreciate that? While you were busy minoring in gender studies and singing a capella at Sarah Lawrence, I was gaining root access to NSA servers. I was one click away from starting a second Iranian revolution.",
+    "friends": [2],
+    "place": "San Francisco, CA",
+    "networks": ["Hooli"]
+  }, {
+    "id": "4",
+    "name": "Nelson 'Big Head' Bighetti",
+    "img": "/assets/img/big_head.jpg",
+    "trades": ["developer"],
+    "tagline": "",
+    "friends": ["Richard Hendricks"],
+    "place": "San Francisco, CA",
+    "networks": ["Hooli"]
+  }, {
+    "id": "5",
+    "name": "Jian Yang",
+    "img": "/assets/img/jian.jpg",
+    "trades": ["developer"],
+    "tagline": "",
+    "friends": [1],
+    "place": "San Francisco, CA"
+  }, {
+    "id": "6",
+    "name": "Richard Hendricks",
+    "img": "/assets/img/richard.jpg",
+    "trades": ["developer"],
+    "tagline": "",
+    "friends": [2,3,4],
+    "place": "San Francisco, CA",
+    "networks": ["Hooli"]
+  }]
+}
