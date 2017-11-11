@@ -20,6 +20,13 @@
     </div>
   </form>
 
+  <div class="row justify-content-center" *ngIf="!cards">
+    <p class="text-center text-muted">
+      Search for skills among people<br />
+      For instance type in <i>Developer</i>
+    </p>
+  </div>
+
   <div class="row justify-content-center">
     <template-card-result [card]="card" *ngFor="let card of cards"
       class="col-sm-10 my-1"></template-card-result>

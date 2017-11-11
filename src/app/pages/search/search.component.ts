@@ -28,7 +28,6 @@ export class SearchComponent implements OnInit {
     private searchService: SearchService,
     private typeaheadConfig: NgbTypeaheadConfig
   ) {
-    this.cards = [];
     this.typeaheadConfig.showHint = true;
   }
 
@@ -56,6 +55,7 @@ export class SearchComponent implements OnInit {
   }
 
   search(query: string) {
+    this.cards = [];
     this.searchService.queryContacts(query).subscribe(
       contacts => {
         this.cards = contacts;

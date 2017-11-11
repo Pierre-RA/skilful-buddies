@@ -1,3 +1,28 @@
-<p>
-  top
-</p>
+<template-header [active]="'trade'"></template-header>
+
+<div class="container">
+  <form class="search" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="form-row align-items-center justify-content-center">
+      <div class="col-sm-10">
+        <div class="input-group my-5">
+          <input type="text" class="form-control form-control-lg"
+            formControlName="search"
+            [ngbTypeahead]="searchResult"
+            (selectItem)="itemSelected($event)"
+            placeholder="Find what trades your friends are in">
+          <span class="input-group-btn">
+            <button class="btn btn-warning">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="row justify-content-center" *ngIf="!cards">
+  <p class="text-center text-muted">
+    Discover all the trades made by your friends buddies<br />
+  </p>
+</div>
