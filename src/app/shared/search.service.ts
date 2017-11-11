@@ -7,7 +7,7 @@ import 'rxjs/add/observable/of'
 import { Contact } from './models';
 import * as Buddies from './mock/buddies.json';
 
-const developers: Array<Contact> = Contact.getContacts(Buddies['contacts']);
+const buddies: Array<Contact> = Contact.getContacts(Buddies['contacts']);
 
 @Injectable()
 export class SearchService {
@@ -16,8 +16,34 @@ export class SearchService {
 
   constructor() { }
 
-  queryContacts(keywords: string): Observable<Array<Contact>> {
-    return Observable.of(developers);
+  queryContacts(keyword: string): Observable<Array<Contact>> {
+    let query: Array<Contact> = [];
+    buddies.forEach(buddy => {
+      if (buddy.skills.indexOf(keyword.toLowerCase()) != -1) {
+        query.push(buddy);
+      }
+    });
+    return Observable.of(query);
+  }
+
+  queryConnects(keyword: string): Observable<Array<Contact>> {
+    let query: Array<Contact> = [];
+    buddies.forEach(buddy => {
+      if (buddy.name == keyword) {
+        query.push(buddy);
+      }
+    });
+    return Observable.of(query);
+  }
+
+  queryTrade(keyword: string): Observable<Array<Contact>> {
+    let query: Array<Contact> = [];
+    buddies.forEach(buddy => {
+      if (buddy.trades.indexOf(keyword.toLowerCase()) != 1) {
+        query.push(buddy);
+      }
+    });
+    return Observable.of(query);
   }
 
 }

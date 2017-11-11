@@ -3,6 +3,7 @@ import { Serializable } from './serializable';
 export class Contact implements Serializable<Contact> {
   name: string;
   img: string;
+  skills: Array<string>;
   trades: Array<string>;
   tagline: string;
   friends: Array<string>;
@@ -14,6 +15,12 @@ export class Contact implements Serializable<Contact> {
     this.img = input['img'];
     this.tagline = input['tagline'];
     this.place = input['place'];
+    this.skills = [];
+    if (input['skills']) {
+      input['skills'].forEach(skill => {
+        this.skills.push(skill);
+      })
+    }
     this.trades = [];
     if (input['trades']) {
       input['trades'].forEach(trade => {
