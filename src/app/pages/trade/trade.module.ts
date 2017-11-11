@@ -6,7 +6,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TradeComponent } from './trade.component';
 import { routing } from './trade.routing';
 
+import { SearchService } from '../../shared/search.service';
+
 import { HeaderModule } from '../../templates/header/header.module';
+import { CardResultModule } from '../../templates/card-result/card-result.module';
 
 @NgModule({
   imports: [
@@ -16,7 +19,9 @@ import { HeaderModule } from '../../templates/header/header.module';
     FormsModule,
     ReactiveFormsModule,
     HeaderModule,
+    CardResultModule
   ],
-  declarations: [TradeComponent]
+  declarations: [TradeComponent],
+  providers: [SearchService]
 })
 export class TradeModule { }

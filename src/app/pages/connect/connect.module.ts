@@ -6,7 +6,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConnectComponent } from './connect.component';
 import { routing } from './connect.routing';
 
+import { SearchService } from '../../shared/search.service';
+
 import { HeaderModule } from '../../templates/header/header.module';
+import { CardResultModule } from '../../templates/card-result/card-result.module';
 
 @NgModule({
   imports: [
@@ -16,7 +19,9 @@ import { HeaderModule } from '../../templates/header/header.module';
     FormsModule,
     ReactiveFormsModule,
     HeaderModule,
+    CardResultModule
   ],
-  declarations: [ConnectComponent]
+  declarations: [ConnectComponent],
+  providers: [SearchService]
 })
 export class ConnectModule { }

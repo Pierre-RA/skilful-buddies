@@ -29,6 +29,7 @@ export class SearchService {
   queryConnects(keyword: string): Observable<Array<Contact>> {
     let query: Array<Contact> = [];
     buddies.forEach(buddy => {
+      console.log(buddy.name, keyword);
       if (buddy.name == keyword) {
         query.push(buddy);
       }
@@ -39,7 +40,8 @@ export class SearchService {
   queryTrade(keyword: string): Observable<Array<Contact>> {
     let query: Array<Contact> = [];
     buddies.forEach(buddy => {
-      if (buddy.trades.indexOf(keyword.toLowerCase()) != 1) {
+      console.log(buddy.name, buddy.trades.indexOf(keyword.toLowerCase()));
+      if (buddy.trades.indexOf(keyword.toLowerCase()) != -1) {
         query.push(buddy);
       }
     });
