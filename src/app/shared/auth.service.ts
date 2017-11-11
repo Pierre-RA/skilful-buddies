@@ -42,7 +42,7 @@ export class AuthService {
         this.getProfile();
         this.getPicture();
         this.getFriendList();
-        this.router.navigate(['/']);
+        this.router.navigate(['/search']);
       });
   }
 
@@ -74,7 +74,7 @@ export class AuthService {
 
   logout() {
     window.localStorage.removeItem('token');
-    this.router.navigate(['/sign-in']);
+    this.router.navigate(['/']);
   }
 
 }

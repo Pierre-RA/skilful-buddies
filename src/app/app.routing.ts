@@ -6,8 +6,7 @@ import { AuthGuardService } from './shared/auth-guard.service';
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: 'app/pages/search/search.module#SearchModule',
-    canActivate: [ AuthGuardService ],
+    loadChildren: 'app/pages/landing/landing.module#LandingModule'
   },
   {
     path: 'search',
@@ -38,6 +37,11 @@ export const routes: Routes = [
     loadChildren: 'app/pages/sign-up/sign-up.module#SignUpModule',
     pathMatch: 'full',
     data: {value: 'sign-in'}
+  },
+  {
+    path: 'landing',
+    loadChildren: 'app/pages/landing/landing.module#LandingModule',
+    pathMatch: 'full'
   },
   {
     path: '**',

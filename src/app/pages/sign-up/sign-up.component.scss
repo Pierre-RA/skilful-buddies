@@ -3,7 +3,11 @@
 }
 
 .wrapper {
-  background-color: orange;
+  background: rgb(255,92,0);
+  background: -moz-linear-gradient(45deg,  rgba(255,106,50,1) 67%, rgba(247,204,64,1) 92%);
+  background: -webkit-linear-gradient(45deg,  rgba(255,106,50,1) 67%,rgba(247,204,64,1) 92%);
+  background: linear-gradient(45deg,  rgba(255,106,50,1) 67%,rgba(247,204,64,1) 92%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff6a32', endColorstr='#f7cc40',GradientType=1 );
 }
 
 .bg-white {

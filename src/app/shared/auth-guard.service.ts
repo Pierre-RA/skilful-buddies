@@ -20,7 +20,7 @@ export class AuthGuardService {
     return this.authService.isLoggedIn().map(user => {
       if (!user) {
         this.authService.redirectUrl = state.url;
-        this.router.navigate(['/sign-up']);
+        this.router.navigate(['/']);
       }
       return !!user;
     });
@@ -33,7 +33,7 @@ export class AuthGuardService {
     return this.authService.isLoggedIn().map(user => {
       if (!user) {
         this.authService.redirectUrl = state.url;
-        this.router.navigate(['/sign-up']);
+        this.router.navigate(['/']);
       }
       return !!user;
     });
