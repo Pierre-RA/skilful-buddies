@@ -4,7 +4,7 @@
     "name": "Erlich Bachman",
     "img": "/assets/img/erlich.jpg",
     "skills": ["leading", "incubator"],
-    "trades": ["mushrooms"],
+    "trades": ["mushrooms", "unicorn"],
     "tagline": "Today's user wants access to all their files, from all of their devices, instantly. That's why cloud-based is the Holy Grail. But when it comes to audio and video files, they might as well be called Dripbox.",
     "friends": ["Jian Yang"],
     "place": "San Francisco, CA"

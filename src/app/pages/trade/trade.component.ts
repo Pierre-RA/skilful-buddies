@@ -17,7 +17,7 @@ import { SearchService } from '../../shared/search.service';
 })
 export class TradeComponent implements OnInit {
 
-  states = ['drill', 'mushrooms'];
+  states = ['drill', 'mushrooms', 'unicorn'];
   form: FormGroup;
   cards: Array<Contact>;
 

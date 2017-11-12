@@ -10,6 +10,7 @@ import { Contact } from '../../shared';
 export class CardResultComponent implements OnInit {
 
   @Input('card') card: Contact;
+  @Input('type') type: string;
 
   constructor() { }
 

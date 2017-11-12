@@ -1,4 +1,4 @@
-<div class="user-card">
+<div class="user-card" *ngIf="!type">
   <div class="content">
     <p class="image">
       <img src="{{card.img}}" />
@@ -17,6 +17,39 @@
     <button class="btn btn-warning mx-3">
       <i class="fa fa-link" aria-hidden="true"></i>
       Connect
+    </button>
+    <button class="btn btn-secondary mx-3">Get introduced</button>
+  </p>
+  <p class="text-center grey">
+    You can be introduced to {{card.name}} with
+    <a [routerLink]="['/']" *ngFor="let friend of card.friends">{{friend}}</a>.
+  </p>
+</div>
+
+<div class="user-card" *ngIf="type == 'trade'">
+  <div class="content">
+    <p class="image">
+      <img src="{{card.img}}" />
+      <a [routerLink]="['/']">{{card.place}}</a>
+    </p>
+    <h2>{{card.name}}</h2>
+    <p class="skills">
+      What I trade: <a [routerLink]="['/']" class="badge badge-warning mr-1" *ngFor="let trade of card.trades">{{trade}}</a>
+    </p>
+    <p class="quote">
+      "I've got an inflatable unicorn seldomly used. If you are in the Valley, I can sell it to you."
+    </p>
+    <p class="price">
+      <span class="btn btn-outline-success">
+        $ 22
+      </span>
+    </p>
+  </div>
+  <hr />
+  <p class="text-center">
+    <button class="btn btn-warning mx-3">
+      <i class="fa fa-comment" aria-hidden="true"></i>
+      Contact
     </button>
     <button class="btn btn-secondary mx-3">Get introduced</button>
   </p>
