@@ -1,0 +1,24 @@
+a {
+  color: grey;
+}
+a:hover {
+  text-decoration: none;
+}
+.fa:hover {
+  color: orangered;
+}
+
+
+.notification {
+  position: relative;
+  height: 50px;
+  display: inline-block;
+  .fa-circle {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    text-shadow: -1px -1px 0 white;
+    color: orangered;
+    font-size: 0.9em;
+  }
+}

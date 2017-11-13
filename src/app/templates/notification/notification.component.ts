@@ -1,0 +1,21 @@
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'template-notification',
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.scss']
+})
+export class NotificationComponent implements OnInit {
+
+  @Input('url') url: string;
+  @Input('type') type: string;
+  @Input('isNotified') isNotified: boolean;
+
+  constructor() { }
+
+  ngOnInit() {
+    console.log(this.type);
+    this.type = 'fa-' + this.type;
+  }
+
+}
