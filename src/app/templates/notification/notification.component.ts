@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, HostListener } from '@angular/core';
 
 @Component({
   selector: 'template-notification',
@@ -10,11 +10,29 @@ export class NotificationComponent implements OnInit {
   @Input('url') url: string;
   @Input('type') type: string;
   @Input('isNotified') isNotified: boolean;
+  menuOpened: boolean;
 
-  constructor() { }
+  constructor(
+    private elemRef: ElementRef
+  ) {
+    this.menuOpened = false;
+  }
 
   ngOnInit() {
     this.type = 'fa-' + this.type;
   }
 
+  toggleMenu() {
+    this.menuOpened = !this.menuOpened;
+  }
+
+  @HostListener('document:click', ['$event'])
+  @HostListener('document:touchstart', ['$event'])
+  toggle(event) {
+    if (this.elemRef.nativeElement.contains(event.target)) {
+      this.menuOpened = !this.menuOpened;
+    } else {
+      this.menuOpened = false;
+    }
+  }
 }

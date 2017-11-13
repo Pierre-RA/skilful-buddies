@@ -13,6 +13,8 @@ a:hover {
   position: relative;
   height: 50px;
   display: inline-block;
+  color: grey;
+  cursor: pointer;
   .fa-circle {
     position: absolute;
     bottom: 5px;
@@ -20,5 +22,47 @@ a:hover {
     text-shadow: -1px -1px 0 white;
     color: orangered;
     font-size: 0.9em;
+  }
+  .menu {
+    position: absolute;
+    left: -20px;
+    width: 250px;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    z-index: 100;
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      li {
+        position: relative;
+        padding: 0 5px;
+        .box-elements {
+          display: none;
+        }
+      }
+      li:hover {
+        background-color: rgba(255,69,0,0.1);
+        .box-elements {
+          font-size: 10px;
+          width: 12px;
+          display: inline-block;
+          line-height: 12px;
+          position: absolute;
+          right: 5px;
+          top: 15px;
+        }
+      }
+    }
+    ul:before {
+      position: absolute;
+      top: -10px;
+      left: 40px;
+      margin-left: -10px;
+      content: "";
+      display: block;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid white;
+    }
   }
 }
