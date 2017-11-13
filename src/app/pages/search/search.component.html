@@ -1,52 +1,54 @@
-<template-header [active]="'search'"></template-header>
-
-<div class="container">
-  <form class="search" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-    <div class="form-row align-items-center justify-content-center">
-      <div class="col-sm-10">
-        <div class="input-group my-5">
-          <input type="text" class="form-control form-control-lg"
-            formControlName="search"
-            [ngbTypeahead]="searchResult"
-            (selectItem)="itemSelected($event)"
-            placeholder="Find your friend's skilful buddies">
-          <span class="input-group-btn">
-            <button class="btn btn-warning">
-            <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </span>
+<div class="above">
+  <template-header [active]="'search'"></template-header>
+  <div class="container">
+    <form class="search" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+      <div class="form-row align-items-center justify-content-center">
+        <div class="col-sm-10">
+          <div class="input-group my-5">
+            <input type="text" class="form-control form-control-lg"
+              formControlName="search"
+              [ngbTypeahead]="searchResult"
+              (selectItem)="itemSelected($event)"
+              placeholder="Find your friend's skilful buddies">
+            <span class="input-group-btn">
+              <button class="btn btn-warning">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </span>
+          </div>
         </div>
       </div>
+    </form>
+
+    <div class="row justify-content-center" *ngIf="!cards">
+      <p class="text-center text-muted">
+        Search for skills among people<br />
+        For instance type in <i>Developer</i>
+      </p>
     </div>
-  </form>
 
-  <div class="row justify-content-center" *ngIf="!cards">
-    <p class="text-center text-muted">
-      Search for skills among people<br />
-      For instance type in <i>Developer</i>
-    </p>
+    <div class="row justify-content-center">
+      <template-card-result [card]="card" *ngFor="let card of cards"
+        class="col-sm-10 my-1"></template-card-result>
+    </div>
   </div>
 
-  <div class="row justify-content-center">
-    <template-card-result [card]="card" *ngFor="let card of cards"
-      class="col-sm-10 my-1"></template-card-result>
-  </div>
+  <ng-template #introModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Demo mode</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>This is a demo mode, almost nothing is working as intended&hellip;</p>
+      <p>
+        Start looking up by searching developer in the search box ;-)
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>
+
 </div>
-
-<ng-template #introModal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Demo mode</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>This is a demo mode, almost nothing is working as intended&hellip;</p>
-    <p>
-      Start looking up by searching developer in the search box ;-)
-    </p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
-  </div>
-</ng-template>
