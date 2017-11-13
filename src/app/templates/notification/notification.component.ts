@@ -14,7 +14,6 @@ export class NotificationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.type);
     this.type = 'fa-' + this.type;
   }
 

@@ -1,32 +1,35 @@
-<template-header [active]="'connect'"></template-header>
+<div class="above">
+  <template-header [active]="'connect'"></template-header>
 
-<div class="container">
-  <form class="search" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-    <div class="form-row align-items-center justify-content-center">
-      <div class="col-sm-10">
-        <div class="input-group my-5">
-          <input type="text" class="form-control form-control-lg"
-            formControlName="search"
-            [ngbTypeahead]="searchResult"
-            (selectItem)="itemSelected($event)"
-            placeholder="Connect with friends">
-          <span class="input-group-btn">
-            <button class="btn btn-warning">
-            <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </span>
+  <div class="container">
+    <form class="search" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+      <div class="form-row align-items-center justify-content-center">
+        <div class="col-sm-10">
+          <div class="input-group my-5">
+            <input type="text" class="form-control form-control-lg"
+              formControlName="search"
+              [ngbTypeahead]="searchResult"
+              (selectItem)="itemSelected($event)"
+              placeholder="Connect with friends">
+            <span class="input-group-btn">
+              <button class="btn btn-warning">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
 
-<div class="row justify-content-center" *ngIf="!cards">
-  <p class="text-center text-muted">
-    Find your friends on the most known social platforms<br />
-    <i class="fa fa-fw fa-google-plus hover-google" aria-hidden="true"></i>
-    <i class="fa fa-fw fa-facebook hover-facebook" aria-hidden="true"></i>
-    <i class="fa fa-fw fa-linkedin hover-linkedin" aria-hidden="true"></i>
-    <i class="fa fa-fw fa-twitter hover-twitter" aria-hidden="true"></i>
-  </p>
+  <div class="row justify-content-center" *ngIf="!cards">
+    <p class="text-center text-muted">
+      Find your friends on the most known social platforms<br />
+      <i class="fa fa-fw fa-google-plus hover-google" aria-hidden="true"></i>
+      <i class="fa fa-fw fa-facebook hover-facebook" aria-hidden="true"></i>
+      <i class="fa fa-fw fa-linkedin hover-linkedin" aria-hidden="true"></i>
+      <i class="fa fa-fw fa-twitter hover-twitter" aria-hidden="true"></i>
+    </p>
+  </div>
+
 </div>
