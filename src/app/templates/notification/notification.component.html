@@ -5,7 +5,8 @@
   </div>
   <div *ngIf="menuOpened" class="menu">
     <p *ngIf=!isNotified>
-      No notitifications...
+      No notitifications...<br />
+      <a [routerLink]="['/chat']">go to chat panel</a>
     </p>
     <ul *ngIf="isNotified">
       <li *ngFor="let notification of notifications; let i = index" [ngClass]="{ 'active': !notification.read }">

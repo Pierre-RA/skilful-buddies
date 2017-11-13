@@ -1,0 +1,19 @@
+.right {
+  border-left: solid 1px grey;
+  min-height: 100vh;
+}
+
+
+.people-card {
+  border-bottom: solid 1px grey;
+  p.image {
+    display: block;
+    float: left;
+    margin: 0;
+    font-size: 0.9em;
+    text-align: center;
+    img {
+      height: 55px;
+    }
+  }
+}

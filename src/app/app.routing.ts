@@ -44,6 +44,11 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'chat',
+    loadChildren: 'app/pages/chat/chat.module#ChatModule',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: ''
   }
