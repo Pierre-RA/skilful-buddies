@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Notification } from '../../shared';
 import { AuthService } from '../../shared/auth.service';
 
 @Component({
@@ -33,6 +34,21 @@ export class HeaderComponent implements OnInit {
       ageRange: window.localStorage.getItem('profile_age_range'),
       picture: window.localStorage.getItem('profile_picture')
     };
+  }
+
+  getUsersNotifications() {
+    return [];
+  }
+
+  getAlertNotifications() {
+    return [
+      new Notification('', 'Come here for notifications', false),
+      new Notification('', 'Jian Yang wants to trade', true)
+    ];
+  }
+
+  getCommentsNotifications() {
+    return [];
   }
 
 }

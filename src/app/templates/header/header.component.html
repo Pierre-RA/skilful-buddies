@@ -2,9 +2,9 @@
   <h1 class="title skilful-buddies">Skill Buddies</h1>
   <div class="pinned-right">
     <span class="block">
-      <template-notification [type]="'user'" [isNotified]="false"></template-notification>
-      <template-notification [type]="'bell'" [isNotified]="true"></template-notification>
-      <template-notification [type]="'comments'" [isNotified]="false"></template-notification>
+      <template-notification [type]="'user'" [notifications]="getUsersNotifications()"></template-notification>
+      <template-notification [type]="'bell'" [notifications]="getAlertNotifications()"></template-notification>
+      <template-notification [type]="'comments'" [notifications]="getCommentsNotifications()"></template-notification>
     </span>
     <span class="block">
       <div ngbDropdown class="d-inline-block">

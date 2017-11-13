@@ -30,6 +30,9 @@ a:hover {
     background-color: white;
     box-shadow: 0 1px 4px rgba(0,0,0,0.4);
     z-index: 100;
+    p {
+      padding: 0 5px;
+    }
     ul {
       list-style-type: none;
       padding-left: 0;
@@ -41,7 +44,6 @@ a:hover {
         }
       }
       li:hover {
-        background-color: rgba(255,69,0,0.1);
         .box-elements {
           font-size: 10px;
           width: 12px;
@@ -52,8 +54,12 @@ a:hover {
           top: 15px;
         }
       }
+      li.active {
+        background-color: rgba(255,69,0,0.1);
+      }
     }
-    ul:before {
+    ul:before,
+    p:before {
       position: absolute;
       top: -10px;
       left: 40px;

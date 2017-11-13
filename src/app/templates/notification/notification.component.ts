@@ -9,8 +9,9 @@ export class NotificationComponent implements OnInit {
 
   @Input('url') url: string;
   @Input('type') type: string;
-  @Input('isNotified') isNotified: boolean;
+  @Input('notifications') notifications: Array<Object>;
   menuOpened: boolean;
+  isNotified: boolean;
 
   constructor(
     private elemRef: ElementRef
@@ -20,10 +21,15 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit() {
     this.type = 'fa-' + this.type;
+    this.isNotified = this.notifications && this.notifications.length > 0;
   }
 
   toggleMenu() {
     this.menuOpened = !this.menuOpened;
+  }
+
+  slice(index: number) {
+    console.log('slice: ', index);
   }
 
   @HostListener('document:click', ['$event'])

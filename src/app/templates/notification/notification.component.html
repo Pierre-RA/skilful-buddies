@@ -4,19 +4,15 @@
     <i class="fa fa-circle" aria-hidden="true" *ngIf="isNotified"></i>
   </div>
   <div *ngIf="menuOpened" class="menu">
-    <ul>
-      <li>
-        Item 1
+    <p *ngIf=!isNotified>
+      No notitifications...
+    </p>
+    <ul *ngIf="isNotified">
+      <li *ngFor="let notification of notifications; let i = index" [ngClass]="{ 'active': !notification.read }">
+        {{notification.title}}
         <span class="box-elements">
-          <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
-          <i class="fa fa-fw fa-times" aria-hidden="true"></i>
-        </span>
-      </li>
-      <li>
-        Item 2
-        <span class="box-elements">
-          <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
-          <i class="fa fa-fw fa-times" aria-hidden="true"></i>
+          <i class="fa fa-fw fa-circle-o" aria-hidden="true" (click)="notification.setItRead()"></i>
+          <i class="fa fa-fw fa-times" aria-hidden="true" (click)="slice(i)"></i>
         </span>
       </li>
     </ul>
