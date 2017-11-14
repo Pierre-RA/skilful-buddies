@@ -28,6 +28,10 @@ export class AuthService {
     return Observable.of(false);
   }
 
+  getProfilePicture(): string {
+    return window.localStorage.getItem('profile_picture');
+  }
+
   facebookLogin() {
     const loginOptions: LoginOptions = {
       enable_profile_selector: true,

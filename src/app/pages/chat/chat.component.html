@@ -10,7 +10,8 @@
       <div *ngIf="current" class="scroll">
         <div class="chatbox chatbox-{{message.user}}" *ngFor="let message of current.messages">
           <div class="line">
-            <img [src]="current.image" />
+            <img [src]="current.image" *ngIf="message.user == 'left'"/>
+            <img [src]="profile" *ngIf="message.user == 'right'" />
             <p class="colored" [innerHTML]="message.text"></p>
             <p class="date" [innerHTML]="message.time"></p>
           </div>

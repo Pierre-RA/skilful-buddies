@@ -7,6 +7,7 @@ import { routing } from './chat.routing';
 import { HeaderModule } from '../../templates/header/header.module';
 
 import { ChatService } from '../../shared/chat.service';
+import { AuthService } from '../../shared/auth.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ChatService } from '../../shared/chat.service';
     routing
   ],
   declarations: [ChatComponent],
-  providers: [ChatService]
+  providers: [ChatService, AuthService]
 })
 export class ChatModule { }
