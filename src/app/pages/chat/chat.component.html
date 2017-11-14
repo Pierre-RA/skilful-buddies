@@ -74,32 +74,38 @@
           <i class="fa fa-fw fa-pencil-square-o"></i>
         </p>
       </div>
-      <div class="people-card people-active">
-        <p class="image">
-          <img src="/assets/img/richard.jpg" />
-        </p>
-        <h3>Invitation</h3>
-        <p class="subtext">
-          I'd like to join your trade network
-        </p>
+      <div class="loading-headers" *ngIf="!chats">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
       </div>
-      <div class="people-card">
-        <p class="image">
-          <img src="/assets/img/gilfoyle.jpg" />
-        </p>
-        <h3>Not interested</h3>
-        <p class="subtext">
-          Your job proposal is bad.
-        </p>
-      </div>
-      <div class="people-card">
-        <p class="image">
-          <img src="/assets/img/gilfoyle.jpg" />
-        </p>
-        <h3>Invitation</h3>
-        <p class="subtext">
-          I'd like to join your trade network
-        </p>
+      <div *ngIf="chats">
+        <div class="people-card people-active">
+          <p class="image">
+            <img src="/assets/img/richard.jpg" />
+          </p>
+          <h3>Invitation</h3>
+          <p class="subtext">
+            I'd like to join your trade network
+          </p>
+        </div>
+        <div class="people-card">
+          <p class="image">
+            <img src="/assets/img/gilfoyle.jpg" />
+          </p>
+          <h3>Not interested</h3>
+          <p class="subtext">
+            Your job proposal is bad.
+          </p>
+        </div>
+        <div class="people-card">
+          <p class="image">
+            <img src="/assets/img/gilfoyle.jpg" />
+          </p>
+          <h3>Invitation</h3>
+          <p class="subtext">
+            I'd like to join your trade network
+          </p>
+        </div>
       </div>
     </div>
   </div>

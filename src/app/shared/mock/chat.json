@@ -1,0 +1,49 @@
+{
+  "chats": [{
+    "name": "Richard Hendricks",
+    "image": "/assets/img/richard.jpg",
+    "title": "",
+    "subtext": "you: Please stop",
+    "last": "today, 13:02",
+    "messages": [{
+      "user": "left",
+      "text": "To take a trivial example",
+      "time": "12:51"
+    }, {
+      "user": "right",
+      "text": "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "time": "12:52"
+    }, {
+      "user": "left",
+      "text": "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "time": "12:55"
+    }, {
+      "user": "left",
+      "text": "To take a trivial example",
+      "time": "12:59"
+    }, {
+      "user": "left",
+      "text": "To take a trivial example",
+      "time": "12:59"
+    }, {
+      "user": "left",
+      "text": "To take a trivial example<br />lol",
+      "time": "12:59"
+    }, {
+      "user": "right",
+      "text": "Please stop",
+      "time": "13:02"
+    }]
+  }, {
+    "name": "Gilfoyle Bertram",
+    "image": "/assets/img/gilfoyle.jpg",
+    "title": "Invitation to connect",
+    "subtext": "",
+    "last": "yesterday 23:12",
+    "messages": [{
+      "user": "left",
+      "text": "I'd like to connect to your trade network",
+      "time": "23:12"
+    }]
+  }]
+}

@@ -6,12 +6,15 @@ import { routing } from './chat.routing';
 
 import { HeaderModule } from '../../templates/header/header.module';
 
+import { ChatService } from '../../shared/chat.service';
+
 @NgModule({
   imports: [
     CommonModule,
     HeaderModule,
     routing
   ],
-  declarations: [ChatComponent]
+  declarations: [ChatComponent],
+  providers: [ChatService]
 })
 export class ChatModule { }
