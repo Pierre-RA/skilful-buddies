@@ -1,8 +1,20 @@
-.right {
-  border-left: solid 1px grey;
-  min-height: 100vh;
+.above {
+  height: 100vh;
+  padding-top: 95px;
 }
 
+.no-gutters {
+  height: 100%;
+}
+
+.top {
+  position: fixed;
+  width: 100vw;
+}
+
+.right {
+  border-left: solid 1px grey;
+}
 
 .people-card {
   border-bottom: solid 1px grey;
@@ -16,4 +28,72 @@
       height: 55px;
     }
   }
+}
+
+.chatbox {
+  .line {
+    display: inline-block;
+    position: relative;
+    img {
+      display: block;
+      height: 55px;
+      border-radius: 100%;
+    }
+  }
+  margin-bottom: 5px;
+  width: 60%;
+}
+
+.chatbox-left {
+  .line {
+    img {
+      float: left;
+    }
+    p.colored {
+      background-color: rgba(255,69,0,0.6);
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-left: 5px;
+    }
+    .date {
+      position: absolute;
+      right: 5px;
+      bottom: -22px;
+      color: grey;
+    }
+  }
+}
+
+.chatbox-right {
+  float: right;
+  background-color: silver;
+  .line {
+    img {
+      float: right;
+    }
+    p.colored {
+      float: right;
+      background-color: rgba(255,69,0,0.1);
+      color: grey;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    .date {
+      position: absolute;
+      right: 5px;
+      bottom: -22px;
+      color: grey;
+    }
+  }
+}
+
+.text-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
 }
