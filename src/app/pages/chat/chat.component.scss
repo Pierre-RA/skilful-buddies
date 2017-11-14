@@ -47,15 +47,18 @@
 .chatbox-left {
   .line {
     img {
-      float: left;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
     p.colored {
+      float: left;
       background-color: rgba(255,69,0,0.6);
       color: white;
       padding: 10px;
       border-radius: 10px;
       display: inline-block;
-      margin-left: 5px;
+      margin-left: 66px;
     }
     .date {
       position: absolute;
@@ -68,10 +71,12 @@
 
 .chatbox-right {
   float: right;
-  background-color: silver;
   .line {
+    float: right;
     img {
-      float: right;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
     p.colored {
       float: right;
@@ -80,10 +85,11 @@
       padding: 10px;
       border-radius: 10px;
       display: inline-block;
+      margin-right: 66px;
     }
     .date {
       position: absolute;
-      right: 5px;
+      left: 5px;
       bottom: -22px;
       color: grey;
     }
@@ -96,4 +102,13 @@
   left: 0;
   right: 0;
   padding: 10px;
+  textarea {
+    resize: none;
+    height: 80px;
+  }
+  .btn-warning {
+    position: absolute;
+    right: 15px;
+    bottom: 30px;
+  }
 }
