@@ -1,70 +1,28 @@
 <template-header [active]="'chat'" class="top"></template-header>
 <div class="above">
   <div class="row no-gutters">
-    <div class="col-sm-8 p-3">
-      <div class="chatbox chatbox-left">
-        <div class="line">
-          <img src="/assets/img/richard.jpg" />
-          <p class="colored">
-            To take a trivial example
-          </p>
-          <p class="date">
-            12:51
-          </p>
-        </div>
+    <div class="col-sm-8 p-3 left">
+      <div *ngIf="!current">
+        <p class="chat-header">
+          No chat available for the moment.
+        </p>
       </div>
-      <div class="chatbox chatbox-left">
-        <div class="line">
-          <img src="/assets/img/richard.jpg" />
-          <p class="colored">
-            To take a trivial example<br />
-            lol again...
-          </p>
-          <p class="date">
-            12:51
-          </p>
-        </div>
-      </div>
-      <div class="chatbox chatbox-left">
-        <div class="line">
-          <img src="/assets/img/richard.jpg" />
-          <p class="colored">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
-          <p class="date">
-            12:52
-          </p>
-        </div>
-      </div>
-      <div class="chatbox chatbox-right">
-        <div class="line">
-          <img src="/assets/img/erlich.jpg" />
-          <p class="colored">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
-          <p class="date">
-            12:52
-          </p>
-        </div>
-      </div>
-      <div class="chatbox chatbox-right">
-        <div class="line">
-          <img src="/assets/img/erlich.jpg" />
-          <p class="colored">
-            Arsehole!
-          </p>
-          <p class="date">
-            12:57
-          </p>
-        </div>
-      </div>
-      <div class="text-box">
-        <form>
-          <div class="form-group">
-            <textarea class="form-control"></textarea>
-            <button type="submit" class="btn btn-warning">Reply</button>
+      <div *ngIf="current" class="scroll">
+        <div class="chatbox chatbox-{{message.user}}" *ngFor="let message of current.messages">
+          <div class="line">
+            <img [src]="current.image" />
+            <p class="colored" [innerHTML]="message.text"></p>
+            <p class="date" [innerHTML]="message.time"></p>
           </div>
-        </form>
+        </div>
+        <div class="text-box">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control"></textarea>
+              <button type="submit" class="btn btn-warning">Reply</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <div class="col-sm-4 right">
@@ -79,31 +37,15 @@
         <span class="sr-only">Loading...</span>
       </div>
       <div *ngIf="chats">
-        <div class="people-card people-active">
+        <div class="people-card" [ngClass]="{'people-active': active == i}" *ngFor="let chat of chats; let i = index">
           <p class="image">
-            <img src="/assets/img/richard.jpg" />
+            <img [src]="chat.image" />
           </p>
-          <h3>Invitation</h3>
-          <p class="subtext">
-            I'd like to join your trade network
-          </p>
-        </div>
-        <div class="people-card">
-          <p class="image">
-            <img src="/assets/img/gilfoyle.jpg" />
-          </p>
-          <h3>Not interested</h3>
-          <p class="subtext">
-            Your job proposal is bad.
-          </p>
-        </div>
-        <div class="people-card">
-          <p class="image">
-            <img src="/assets/img/gilfoyle.jpg" />
-          </p>
-          <h3>Invitation</h3>
-          <p class="subtext">
-            I'd like to join your trade network
+          <p class="name" [innerHTML]="chat.name"></p>
+          <p class="subtext" [innerHTML]="chat.title" *ngIf="chat.title"></p>
+          <p class="subtext" [innerHTML]="chat.subtext" *ngIf="chat.subtext"></p>
+          <p class="last" *ngIf="chat.last">
+            {{chat.last}}
           </p>
         </div>
       </div>
