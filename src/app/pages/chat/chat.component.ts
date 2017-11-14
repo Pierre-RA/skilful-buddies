@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
 
 import { Chat, Message } from '../../shared/models';
 import { ChatService } from '../../shared/chat.service';
@@ -11,6 +11,7 @@ import { AuthService } from '../../shared/auth.service';
 })
 export class ChatComponent implements OnInit {
 
+  @ViewChild('scrollable') scrollElement;
   chats: Array<Chat>;
   current: Chat;
   active: number;
@@ -34,6 +35,29 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    try {
+      this.scrollElement.nativeElement.scrollTop =
+        this.scrollElement.nativeElement.scrollHeight;
+    } catch(err) {}
+  }
+
+  addChat() {
+    console.log('add chat');
+  }
+
+  goToChat(index: number) {
+    this.chatService.getContent(index).subscribe(chat => {
+      this.active = index;
+      this.current = chat;
+    });
   }
 
 }

@@ -24,6 +24,7 @@
 .right {
   border-left: solid 2px rgb(250,250,250);
   background-color: rgb(250,250,250);
+  z-index: 21;
 }
 
 .header {
@@ -31,11 +32,15 @@
   background-color: white;
   color: rgba(0,0,0,0.6);
   border-bottom: solid 2px rgb(250,250,250);
+  height: 55px;
   .actions {
     position: absolute;
     top: 5px;
     right: 5px;
     font-size: 1.75rem;
+  }
+  .fa-pencil-square-o {
+    cursor: pointer;
   }
 }
 
@@ -51,10 +56,37 @@
   color: rgba(0,0,0,0.6);
 }
 
+.chat-top {
+  border-bottom: solid 2px rgb(250,250,250);
+  margin-bottom: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 20;
+  text-align: center;
+  height: 55px;
+  img {
+    height: 40px;
+    border-radius: 100%;
+  }
+  p {
+    margin-bottom: 0;
+    line-height: 51px;
+  }
+}
+
+.chat-content {
+  padding-top: 52px;
+  margin-bottom: 220px;
+}
+
 .people-card {
   border-bottom: solid 2px rgb(250,250,250);
   background-color: white;
   padding: 5px;
+  cursor: pointer;
   p.image {
     display: block;
     float: left;
@@ -81,6 +113,13 @@
   .last {
     color: grey;
   }
+  .last {
+    text-align: right;
+  }
+  .unread {
+    font-weight: bold;
+    color: rgba(0,0,0,0.7);
+  }
 }
 
 .people-active {
@@ -96,10 +135,14 @@
   .line {
     display: inline-block;
     position: relative;
+    margin-bottom: 4px;
     img {
       display: block;
       height: 55px;
       border-radius: 100%;
+    }
+    .date {
+      font-size: 0.8em;
     }
   }
   margin-bottom: 5px;

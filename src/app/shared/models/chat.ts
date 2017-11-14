@@ -5,6 +5,7 @@ export class Chat implements Serializable<Chat> {
   image: string;
   title: string;
   subtext: string;
+  read: boolean;
   last: string;
   messages: Array<Message>;
 
@@ -14,6 +15,7 @@ export class Chat implements Serializable<Chat> {
     this.title = input['title'];
     this.subtext = input['subtext'];
     this.last = input['last'];
+    this.read = input['read'];
     this.messages = [];
     input['messages'].forEach(message => {
       this.messages.push(message);

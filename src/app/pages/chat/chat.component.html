@@ -7,13 +7,23 @@
           No chat available for the moment.
         </p>
       </div>
-      <div *ngIf="current" class="scroll">
-        <div class="chatbox chatbox-{{message.user}}" *ngFor="let message of current.messages">
-          <div class="line">
-            <img [src]="current.image" *ngIf="message.user == 'left'"/>
-            <img [src]="profile" *ngIf="message.user == 'right'" />
-            <p class="colored" [innerHTML]="message.text"></p>
-            <p class="date" [innerHTML]="message.time"></p>
+      <div class="scroll" #scrollable>
+        <div class="chat-top" *ngIf="current">
+          <p>
+            <img [src]="current.image" />
+            {{current.name}}
+            <span *ngIf="current.title">&ndash;</span>
+            {{current.title}}
+          </p>
+        </div>
+        <div class="chat-content">
+          <div class="chatbox chatbox-{{message.user}}" *ngFor="let message of current.messages">
+            <div class="line">
+              <img [src]="current.image" *ngIf="message.user == 'left'"/>
+              <img [src]="profile" *ngIf="message.user == 'right'" />
+              <p class="colored" [innerHTML]="message.text"></p>
+              <p class="date" [innerHTML]="message.time"></p>
+            </div>
           </div>
         </div>
         <div class="text-box">
@@ -30,7 +40,7 @@
       <div class="header">
         <h3>Messages</h3>
         <p class="actions">
-          <i class="fa fa-fw fa-pencil-square-o"></i>
+          <i class="fa fa-fw fa-pencil-square-o" (click)="addChat()"></i>
         </p>
       </div>
       <div class="loading-headers" *ngIf="!chats">
@@ -38,13 +48,13 @@
         <span class="sr-only">Loading...</span>
       </div>
       <div *ngIf="chats">
-        <div class="people-card" [ngClass]="{'people-active': active == i}" *ngFor="let chat of chats; let i = index">
+        <div class="people-card" [ngClass]="{'people-active': active == i}" *ngFor="let chat of chats; let i = index" (click)="goToChat(i)">
           <p class="image">
             <img [src]="chat.image" />
           </p>
-          <p class="name" [innerHTML]="chat.name"></p>
-          <p class="subtext" [innerHTML]="chat.title" *ngIf="chat.title"></p>
-          <p class="subtext" [innerHTML]="chat.subtext" *ngIf="chat.subtext"></p>
+          <p class="name" [ngClass]="{'unread': !chat.read}" [innerHTML]="chat.name"></p>
+          <p class="subtext" [ngClass]="{'unread': !chat.read}" [innerHTML]="chat.title" *ngIf="chat.title"></p>
+          <p class="subtext" [ngClass]="{'unread': !chat.read}" [innerHTML]="chat.subtext" *ngIf="chat.subtext"></p>
           <p class="last" *ngIf="chat.last">
             {{chat.last}}
           </p>

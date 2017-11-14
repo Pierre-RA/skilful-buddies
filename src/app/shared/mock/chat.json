@@ -4,6 +4,7 @@
     "image": "/assets/img/richard.jpg",
     "title": "",
     "subtext": "you: Please stop",
+    "read": true,
     "last": "today, 13:02",
     "messages": [{
       "user": "left",
@@ -20,7 +21,23 @@
     }, {
       "user": "left",
       "text": "To take a trivial example",
-      "time": "12:59"
+      "time": "12:57"
+    }, {
+      "user": "left",
+      "text": "To take a trivial example",
+      "time": "12:57"
+    }, {
+      "user": "left",
+      "text": "To take a trivial example",
+      "time": "12:58"
+    }, {
+      "user": "left",
+      "text": "To take a trivial example",
+      "time": "12:58"
+    }, {
+      "user": "left",
+      "text": "To take a trivial example",
+      "time": "12:58"
     }, {
       "user": "left",
       "text": "To take a trivial example",
@@ -39,11 +56,24 @@
     "image": "/assets/img/gilfoyle.jpg",
     "title": "Invitation to connect",
     "subtext": "",
+    "read": true,
     "last": "yesterday 23:12",
     "messages": [{
       "user": "left",
       "text": "I'd like to connect to your trade network",
       "time": "23:12"
+    }]
+  }, {
+    "name": "Dinesh Chugtai",
+    "image": "/assets/img/dinesh.jpg",
+    "title": "Invitation to connect",
+    "subtext": "",
+    "read": false,
+    "last": "yesterday 11:34",
+    "messages": [{
+      "user": "left",
+      "text": "I'd like to connect to your trade network",
+      "time": "11:34"
     }]
   }]
 }
