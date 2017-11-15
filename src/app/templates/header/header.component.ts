@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Notification } from '../../shared';
 import { AuthService } from '../../shared/auth.service';
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
   profile: Profile;
 
   constructor(
+    private router: Router,
     private authService: AuthService
   ) {
     this.getProfile();
@@ -25,6 +27,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  goTo(link: string) {
+    this.router.navigate([link]);
   }
 
   getProfile() {

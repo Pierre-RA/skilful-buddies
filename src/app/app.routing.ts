@@ -49,6 +49,11 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'profile',
+    loadChildren: 'app/pages/profile/profile.module#ProfileModule',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: ''
   }
