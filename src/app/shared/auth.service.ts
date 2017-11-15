@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { FacebookService, LoginOptions, LoginResponse } from 'ngx-facebook';
 
 import { Observable } from 'rxjs/Observable';
 
+import { environment } from '../../environments/environment';
 import { User } from './models';
 
 @Injectable()
 export class AuthService {
 
+  apiBase: string;
   redirectUrl: string;
 
   constructor(
     private router: Router,
+    private http: HttpClient,
     private fb: FacebookService
   ) {
+    this.apiBase = environment.apiBase;
     fb.init({
       appId: '1465809513539908',
       version: 'v2.11'
@@ -46,7 +51,16 @@ export class AuthService {
         this.getProfile();
         this.getPicture();
         this.getFriendList();
+        this.serverLogin();
         this.router.navigate(['/search']);
+      });
+  }
+
+  serverLogin() {
+    this.http.post(
+      this.apiBase + 'users/facebook',
+      { 'access_token': window.localStorage.getItem('token') }).subscribe(data => {
+        console.log(data);
       });
   }
 

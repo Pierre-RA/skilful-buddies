@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FacebookModule } from 'ngx-facebook';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
@@ -19,6 +20,7 @@ import { AuthService } from './shared/auth.service';
     NgbModule.forRoot(),
     FacebookModule.forRoot(),
     Ng2PageScrollModule.forRoot(),
+    HttpClientModule,
     routing
   ],
   providers: [
