@@ -1,7 +1,7 @@
 <template-header [active]="'profile'" class="top"></template-header>
 <div class="above">
   <div class="container">
-    <div class="header">
+    <div class="header" *ngIf="profile">
       <div class="header-left">
         <div class="profile">
           <img src="https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/19511285_10213826032828157_3450925017036310391_n.jpg?oh=881a8052802dc9dc2e0e9150a21a79c9&amp;oe=5A9845D8" />
@@ -56,6 +56,7 @@
         </div>
       </div>
     </div>
+
     <div class="row mt-5">
       <div class="col-sm-6">
         <div class="profile-card">
@@ -67,6 +68,10 @@
           trade #2
         </div>
       </div>
+    </div>
+
+    <div class="row">
+
     </div>
   </div>
 </div>
