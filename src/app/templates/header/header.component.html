@@ -6,7 +6,7 @@
       <template-notification [type]="'bell'" [notifications]="getAlertNotifications()"></template-notification>
       <template-notification [type]="'comments'" [notifications]="getCommentsNotifications()"></template-notification>
     </span>
-    <span class="block">
+    <span class="block" *ngIf="profile">
       <div ngbDropdown class="d-inline-block">
         <button class="no-btn" id="profileLink" ngbDropdownToggle>
           {{profile.name}}

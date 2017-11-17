@@ -4,14 +4,14 @@
     <div class="header" *ngIf="profile">
       <div class="header-left">
         <div class="profile">
-          <img src="https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/19511285_10213826032828157_3450925017036310391_n.jpg?oh=881a8052802dc9dc2e0e9150a21a79c9&amp;oe=5A9845D8" />
+          <img [src]="profile.picture" />
         </div>
         <div class="map">
           MAP
         </div>
         <div class="under">
           <div class="under-left">
-            <h1>Pierre Repetto-Andipatin</h1>
+            <h1>{{profile.name}}</h1>
             <p>
               <i class="fa fa-fw fa-cogs" aria-hidden="true"></i>
               skills
@@ -26,33 +26,16 @@
         </div>
       </div>
       <div class="header-right">
-        <div class="head">
-          <img src="/assets/img/big_head.jpg" />
+        <div class="head" *ngFor="let friend of profile.friends">
+          <img [src]="friend.picture" />
         </div>
-        <div class="head">
-          <img src="/assets/img/dinesh.jpg" />
-        </div>
-        <div class="head">
-          <img src="/assets/img/erlich.jpg" />
-        </div>
-        <div class="head">
-          <img src="/assets/img/gilfoyle.jpg" />
-        </div>
-        <div class="head">
-          <img src="/assets/img/jian.jpg" />
-        </div>
-        <div class="head">
-          <img src="/assets/img/richard.jpg" />
-        </div>
-        <div class="head">
-          <img src="/assets/img/monica.jpg" />
-        </div>
-        <div class="head">
-          <img src="/assets/img/gavin.jpg" />
-        </div>
-        <div class="head head-orangered">
-          <span>104</span><br />
+        <div class="head head-orangered" *ngIf="profile.friends.length != 1">
+          <span>{{profile.friends.length}}</span><br />
           Friends
+        </div>
+        <div class="head head-orangered" *ngIf="profile.friends.length == 1">
+          <span>{{profile.friends.length}}</span><br />
+          Friend
         </div>
       </div>
     </div>

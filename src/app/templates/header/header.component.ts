@@ -1,8 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Notification } from '../../shared';
+import { Subscription } from 'rxjs/Subscription';
+
+import { Notification, User } from '../../shared';
 import { AuthService } from '../../shared/auth.service';
+import { UsersService } from '../../shared/users.service';
 
 @Component({
   selector: 'template-header',
@@ -12,17 +15,24 @@ import { AuthService } from '../../shared/auth.service';
 export class HeaderComponent implements OnInit {
 
   @Input('active') active: string;
-  profile: Profile;
+  profile: User;
+  sub: Subscription;
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private usersService: UsersService
   ) {
+    this.profile;
     this.getProfile();
   }
 
   ngOnInit() {
     // this.getProfile();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   logout() {
@@ -34,12 +44,9 @@ export class HeaderComponent implements OnInit {
   }
 
   getProfile() {
-    this.profile = {
-      name: window.localStorage.getItem('profile_name'),
-      gender: window.localStorage.getItem('profile_gender'),
-      ageRange: window.localStorage.getItem('profile_age_range'),
-      picture: window.localStorage.getItem('profile_picture')
-    };
+    this.sub = this.usersService.getOwner().subscribe(user => {
+      this.profile = user;
+    });
   }
 
   getUsersNotifications() {
@@ -57,11 +64,4 @@ export class HeaderComponent implements OnInit {
     return [];
   }
 
-}
-
-interface Profile {
-  name: string;
-  gender: string;
-  ageRange: string;
-  picture: string;
 }

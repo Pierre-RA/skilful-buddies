@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Subscription } from 'rxjs/Subscription';
+
 import { User } from '../../shared';
 import { UsersService } from '../../shared/users.service';
 
@@ -10,17 +12,27 @@ import { UsersService } from '../../shared/users.service';
 })
 export class ProfileComponent implements OnInit {
 
+  sub: Subscription;
+  profile: User;
 
   constructor(
     private usersService: UsersService
   ) {
-    this.usersService.getUsers().subscribe(data => {
-      let tmp = User.getUsers(data);
-      console.log(tmp);
-    });
+    this.getProfile();
+    // this.usersService.getUsers().subscribe(data => {
+    //   let tmp = User.getUsers(data);
+    //   console.log(tmp);
+    // });
   }
 
   ngOnInit() {
+  }
+
+  getProfile() {
+    this.sub = this.usersService.getOwner().subscribe(user => {
+      this.profile = user;
+      console.log(this.profile.friends);
+    });
   }
 
 }
