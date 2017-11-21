@@ -14,11 +14,15 @@ $linkedin-dark: rgb(0, 113, 171);
   font-family: 'Caveat', cursive;
 }
 
-.skilful-buddies {
+.skilful-buddies,
+.skilful-buddies:hover {
   font-family: 'Caveat', cursive;
   line-height: 55px;
   color: orangered;
   text-shadow: 1px 0 0 rgba(0,0,0,0.4);
+}
+.skilful-buddies:hover {
+  text-decoration: none;
 }
 
 ngb-typeahead-window {
