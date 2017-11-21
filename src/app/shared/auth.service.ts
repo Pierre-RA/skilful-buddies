@@ -26,11 +26,8 @@ export class AuthService {
     });
   }
 
-  isLoggedIn(): Observable<boolean> {
-    if (window.localStorage.getItem('token')) {
-      return Observable.of(true);
-    }
-    return Observable.of(false);
+  isLoggedIn(): Observable<string> {
+    return Observable.of(window.localStorage.getItem('profile_id'));
   }
 
   getProfilePicture(): string {
