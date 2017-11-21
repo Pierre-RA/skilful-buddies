@@ -13,6 +13,13 @@ export class User implements Serializable<User> {
     google?: string,
     twitter?: string
   };
+  place: {
+    address?: string,
+    city?: string,
+    country?: string,
+    latitude?: number,
+    longitude?: number
+  };
   skills: Array<string>;
   friends: Array<User>;
 
@@ -41,6 +48,15 @@ export class User implements Serializable<User> {
       input['friends'].forEach(friend => {
         this.friends.push(new User().deserialize(friend));
       });
+    }
+    if (input['place']) {
+      this.place = {
+        address: input['place']['address'],
+        city: input['place']['city'],
+        country: input['place']['country'],
+        latitude: input['place']['latitude'],
+        longitude: input['place']['longitude'],
+      };
     }
     return this;
   }

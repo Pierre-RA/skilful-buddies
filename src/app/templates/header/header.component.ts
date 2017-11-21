@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private usersService: UsersService
   ) {
-    this.profile;
     this.getProfile();
   }
 

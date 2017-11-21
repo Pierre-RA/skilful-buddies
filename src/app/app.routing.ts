@@ -1,6 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
+import { ErrorComponent } from './pages/error/error.component';
+
 import { AuthGuardService } from './shared/auth-guard.service';
 
 export const routes: Routes = [
@@ -49,13 +51,12 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'profile',
-    loadChildren: 'app/pages/profile/profile.module#ProfileModule',
-    pathMatch: 'full'
+    path: 'profile/:id',
+    loadChildren: 'app/pages/profile/profile.module#ProfileModule'
   },
   {
     path: '**',
-    redirectTo: ''
+    component: ErrorComponent
   }
 ];
 

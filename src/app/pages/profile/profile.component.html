@@ -7,7 +7,13 @@
           <img [src]="profile.picture" />
         </div>
         <div class="map">
-          MAP
+          <agm-map *ngIf="profile.place" [latitude]="profile.place.latitude" [longitude]="profile.place.longitude" [zoom]="14" [streetViewControl]="false" [zoomControl]="false" [mapTypeId]="'terrain'">
+            <agm-snazzy-info-window [isOpen]="true" [latitude]="profile.place.latitude" [longitude]="profile.place.longitude" [closeOnMapClick]="false" [showCloseButton]="false" [backgroundColor]="'rgba(255,69,0,0.7)'" [borderRadius]="'10px'">
+              <ng-template>
+                Palo Alto, CA
+              </ng-template>
+            </agm-snazzy-info-window>
+          </agm-map>
         </div>
         <div class="under">
           <div class="under-left">
@@ -27,7 +33,9 @@
       </div>
       <div class="header-right">
         <div class="head" *ngFor="let friend of profile.friends">
-          <img [src]="friend.picture" />
+          <a [routerLink]="['/profile', friend._id]">
+            <img [src]="friend.picture" />
+          </a>
         </div>
         <div class="head head-orangered" *ngIf="profile.friends.length != 1">
           <span>{{profile.friends.length}}</span><br />
@@ -54,7 +62,6 @@
     </div>
 
     <div class="row">
-
     </div>
   </div>
 </div>

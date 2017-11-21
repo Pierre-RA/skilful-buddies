@@ -51,8 +51,11 @@
     height: 182px;
     padding-left: 183px;
     border-right: solid 1px white;
-    background-color: lightgreen;
     color: white;
+    agm-map {
+      width: 100%;
+      height: 100%;
+    }
   }
   .under {
     position: relative;

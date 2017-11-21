@@ -8,15 +8,15 @@
     </span>
     <span class="block" *ngIf="profile">
       <div ngbDropdown class="d-inline-block">
-        <button class="no-btn" id="profileLink" ngbDropdownToggle>
+        <button class="no-btn dark-grey" id="profileLink" ngbDropdownToggle>
           {{profile.name}}
           <img [src]="profile.picture" />
         </button>
         <div ngbDropdownMenu aria-labelledby="profileLink">
-          <button class="dropdown-item" (click)="goTo('profile')">
+          <a class="dropdown-item dark-grey" [routerLink]="['/profile', profile._id]">
             <i class="fa fa-fw fa-user-o" aria-hidden="true"></i>
             Profile
-          </button>
+          </a>
           <button class="dropdown-item" (click)="logout()">
             <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
             Sign out
