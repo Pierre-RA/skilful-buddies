@@ -28,7 +28,6 @@ export class AuthService {
   }
 
   isLoggedIn(): Observable<string> {
-    // let id = window.localStorage.getItem('profile_id') || false;
     return Observable.of(window.localStorage.getItem('profile_id'));
   }
 
@@ -46,7 +45,7 @@ export class AuthService {
     this.fb.login(loginOptions)
       .then((res: LoginResponse) => {
         window.localStorage.setItem('token', res.authResponse.accessToken);
-        window.localStorage.setItem('dat', JSON.stringify(res.authResponse));
+        // window.localStorage.setItem('dat', JSON.stringify(res.authResponse));
         this.serverLogin();
       });
   }
@@ -55,8 +54,6 @@ export class AuthService {
     this.http.post(
       this.apiBase + 'users/facebook',
       { 'access_token': window.localStorage.getItem('token') }).subscribe(data => {
-        // window.localStorage.setItem('profile_name', data['name']);
-        // window.localStorage.setItem('profile_picture', data['picture']);
         window.localStorage.setItem('profile', JSON.stringify(data));
         window.localStorage.setItem('profile_id', data['_id']);
         this.router.navigate(['/search']);
