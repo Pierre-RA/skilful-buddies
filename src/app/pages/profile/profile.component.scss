@@ -111,3 +111,15 @@
   background-color: white;
   border-radius: 5px;
 }
+
+.edit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  cursor: pointer;
+}
+
+.edit:hover {
+  color: grey;
+}

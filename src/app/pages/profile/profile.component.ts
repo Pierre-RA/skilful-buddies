@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
@@ -11,7 +12,8 @@ import { AuthService } from '../../shared/auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProfileComponent implements OnInit {
 
@@ -19,14 +21,17 @@ export class ProfileComponent implements OnInit {
   profile: User;
   editable: boolean;
   id: string;
+  modal: NgbModalRef;
 
-  editableText = 'myText';
+  givenAddress: string;
+  text: string = 'developer, front-end';
 
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal
   ) {
     this.editable = false;
   }
@@ -42,11 +47,7 @@ export class ProfileComponent implements OnInit {
 
   getProfile(user: User) {
     this.profile = user;
-    this.profile.place = {
-      address: '5230 Newell Road, Palo Alto',
-      latitude: 37.4461178,
-      longitude: -122.1481813
-    };
+    this.fillPlace();
     console.log(this.profile);
   }
 
@@ -55,12 +56,48 @@ export class ProfileComponent implements OnInit {
       .subscribe(result => {
         if (result) {
           this.editable = result == id;
+          this.id = result;
         }
       });
   }
 
-  saveEditable(value) {
-    console.log(value);
+  editField(field: string, value) {
+    let object = {};
+    object[field] = value;
+    this.usersService.updateUser(this.id, object).subscribe(
+      result => {
+      }
+    );
+  }
+
+  editAddress(value, modal) {
+    this.usersService.updateAddress(this.id, value).subscribe(
+      result => {
+        this.profile.place = result.place;
+        this.fillPlace();
+        this.modal.close();
+      }
+    );
+  }
+
+  openModal(content) {
+    this.modal = this.modalService.open(content);
+  }
+
+  fillPlace() {
+    if (!this.profile.place) {
+      this.profile.place = {
+        city: 'Place Not assigned',
+        state: '',
+        country: '',
+        latitude: -13.1808552,
+        longitude: 130.7566543
+      }
+    }
+    this.givenAddress = this.profile.place.city;
+    if (this.profile.place.country) {
+      this.givenAddress += this.profile.place.country == 'United States' ? ', ' + this.profile.place.state : ', ' + this.profile.place.country;
+    }
   }
 
 }

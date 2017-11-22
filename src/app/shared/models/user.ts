@@ -16,6 +16,7 @@ export class User implements Serializable<User> {
   place: {
     address?: string,
     city?: string,
+    state?: string,
     country?: string,
     latitude?: number,
     longitude?: number

@@ -27,6 +27,16 @@ export class UsersService {
     return this.http.get<User>(this.apiBase + 'users/' + id);
   }
 
+  updateUser(id: string, update: Object): Observable<User> {
+    return this.http.put<User>(this.apiBase + 'users/' + id, update);
+  }
+
+  updateAddress(id: string, address: string): Observable<User> {
+    return this.http.put<User>(this.apiBase + 'users/geocode/' + id, {
+      address: address
+    });
+  }
+
   getOwner(): Observable<User> {
     if (!this.owner) {
       let id = window.localStorage.getItem('profile_id');

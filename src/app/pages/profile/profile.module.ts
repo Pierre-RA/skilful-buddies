@@ -12,6 +12,8 @@ import { HeaderModule } from '../../templates/header/header.module';
 
 import { UsersService } from '../../shared/users.service';
 
+import { BadgePipe } from '../../pipes/badge.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +24,7 @@ import { UsersService } from '../../shared/users.service';
     AgmSnazzyInfoWindowModule,
     InlineEditorModule
   ],
-  declarations: [ProfileComponent],
+  declarations: [ProfileComponent, BadgePipe],
   providers: [UsersService]
 })
 export class ProfileModule { }
