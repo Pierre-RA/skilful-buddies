@@ -17,12 +17,14 @@ export class HeaderComponent implements OnInit {
   @Input('active') active: string;
   profile: User;
   sub: Subscription;
+  homeURI: string;
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private usersService: UsersService
   ) {
+    this.homeURI = '';
     this.getProfile();
   }
 
@@ -43,6 +45,12 @@ export class HeaderComponent implements OnInit {
   }
 
   getProfile() {
+    this.authService.isLoggedIn()
+      .subscribe(result => {
+        if (result) {
+          this.homeURI = '/profile/' + result;
+        }
+      });
     this.sub = this.usersService.getOwner().subscribe(user => {
       this.profile = user;
     });

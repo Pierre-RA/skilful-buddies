@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FacebookService, LoginOptions, LoginResponse } from 'ngx-facebook';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import { environment } from '../../environments/environment';
 import { User } from './models';
@@ -27,6 +28,7 @@ export class AuthService {
   }
 
   isLoggedIn(): Observable<string> {
+    // let id = window.localStorage.getItem('profile_id') || false;
     return Observable.of(window.localStorage.getItem('profile_id'));
   }
 
