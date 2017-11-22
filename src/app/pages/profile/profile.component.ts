@@ -6,6 +6,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { User } from '../../shared';
 import { UsersService } from '../../shared/users.service';
+import { AuthService } from '../../shared/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,13 +22,17 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
+    private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.editable = false;
+  }
 
   ngOnInit() {
     this.activatedRoute.params
       .switchMap(params => {
+        this.checkOwner(params['id']);
         return this.usersService.getUser(params['id']);
       })
       .subscribe(user => this.getProfile(user));
@@ -41,6 +46,15 @@ export class ProfileComponent implements OnInit {
       longitude: -122.1481813
     };
     console.log(this.profile);
+  }
+
+  checkOwner(id: string) {
+    this.authService.isLoggedIn()
+      .subscribe(result => {
+        if (result) {
+          this.editable = result == id;
+        }
+      });
   }
 
 }
