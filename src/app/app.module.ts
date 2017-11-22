@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FacebookModule } from 'ngx-facebook';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -29,7 +31,9 @@ import { UsersService } from './shared/users.service';
       apiKey: environment.mapsAPI
     }),
     AgmSnazzyInfoWindowModule,
+    InlineEditorModule,
     HttpClientModule,
+    FormsModule,
     routing,
     ErrorModule
   ],

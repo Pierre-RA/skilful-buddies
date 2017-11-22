@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
   editable: boolean;
   id: string;
 
+  editableText = 'myText';
+
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
@@ -55,6 +57,10 @@ export class ProfileComponent implements OnInit {
           this.editable = result == id;
         }
       });
+  }
+
+  saveEditable(value) {
+    console.log(value);
   }
 
 }

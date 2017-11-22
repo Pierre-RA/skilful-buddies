@@ -184,6 +184,10 @@
     source-map "^0.5.6"
     tree-kill "^1.0.0"
 
+"@qontu/ngx-inline-editor@^0.2.0-alpha.12":
+  version "0.2.0-alpha.12"
+  resolved "https://registry.yarnpkg.com/@qontu/ngx-inline-editor/-/ngx-inline-editor-0.2.0-alpha.12.tgz#4e9fddd2b6afd92d010a5f3420f7c24584658a84"
+
 "@schematics/angular@~0.1.0":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-0.1.5.tgz#501ef8bd7319e1b57486ee2a48720d2f3da7ee13"
