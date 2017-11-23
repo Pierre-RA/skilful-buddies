@@ -37,7 +37,7 @@
               </span>
             </p>
           </div>
-          <div class="buttons">
+          <div class="buttons" *ngIf="editable">
             <button class="btn btn-light" (click)="openModal(editSkill)">
               <i class="fa fa-fw fa-certificate"></i>
               add skill
