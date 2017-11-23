@@ -9,6 +9,6 @@ import { CardTradeComponent } from './card-trade.component';
     RouterModule
   ],
   declarations: [CardTradeComponent],
-  exports: [RouterModule]
+  exports: [CardTradeComponent]
 })
 export class CardTradeModule { }

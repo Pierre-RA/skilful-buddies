@@ -36,11 +36,16 @@
                 American
               </span>
             </p>
-            <!-- <p>
-              <i class="fa fa-fw fa-cogs" aria-hidden="true"></i>
-              skills
-              <span [innerHTML]="text | badge"></span>
-            </p> -->
+          </div>
+          <div class="buttons">
+            <button class="btn btn-light" (click)="openModal(editSkill)">
+              <i class="fa fa-fw fa-certificate"></i>
+              add skill
+            </button>
+            <button class="btn btn-light" (click)="openModal(editTrade)">
+              <i class="fa fa-fw fa-balance-scale"></i>
+              add trade
+            </button>
           </div>
           <div class="under-right">
             <span class="orangered">12</span><br />
@@ -65,8 +70,8 @@
       </div>
     </div>
 
-    <div class="row mt-5">
-      <div class="col-sm-6" *ngFor="let skill of skills">
+    <div class="row mt-5" *ngIf="profile">
+      <div class="col-sm-6" *ngFor="let skill of profile.skills">
         <template-card-skill [skill]="skill"></template-card-skill>
       </div>
       <div class="col-sm-6" *ngFor="let trade of trades">
@@ -88,5 +93,25 @@
     <p class="text-muted text-center mt-1">
       Your address will never be shown to the public. People will only the city you're in.
     </p>
+  </div>
+</ng-template>
+
+<ng-template #editSkill let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3>Add a new skill</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      ...
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #editTrade let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3>Add a new trade</h3>
+  </div>
+  <div class="modal-body">
+
   </div>
 </ng-template>

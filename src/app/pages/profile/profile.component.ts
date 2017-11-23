@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit {
   modal: NgbModalRef;
 
   givenAddress: string;
-  skills: Array<Skill>;
   trades: Array<Trade>;
 
   constructor(
@@ -35,10 +34,10 @@ export class ProfileComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.editable = false;
-    this.skills = [{
-      name: 'Developer',
-      content: 'I extended my compression algorithm to support... get this... 12-bit color. Okay, so our users will be able to experience a 10 percent increase in image quality with absolutely no increase in server load whatsoever.'
-    }];
+    // this.skills = [{
+    //   name: 'Developer',
+    //   content: 'I extended my compression algorithm to support... get this... 12-bit color. Okay, so our users will be able to experience a 10 percent increase in image quality with absolutely no increase in server load whatsoever.'
+    // }];
     this.trades = [{
       name: 'Smartphone',
       content: 'Something I got from Raviga.'
