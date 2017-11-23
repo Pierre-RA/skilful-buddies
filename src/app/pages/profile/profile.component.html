@@ -26,11 +26,21 @@
             <h1 *ngIf="editable">
               <inline-editor type="text" [(ngModel)]="profile.name" (onSave)="editField('name', $event)" name="editName" size="40" [disabled]="!editable"></inline-editor>
             </h1>
-            <p>
+            <p class="text-muted">
+              <span class="mr-1">
+                <i class="fa fa-fw fa-heartbeat" aria-hidden="true"></i>
+                26 years old
+              </span>
+              <span class="ml-1">
+                <i class="fa fa-fw fa-globe" aria-hidden="true"></i>
+                American
+              </span>
+            </p>
+            <!-- <p>
               <i class="fa fa-fw fa-cogs" aria-hidden="true"></i>
               skills
               <span [innerHTML]="text | badge"></span>
-            </p>
+            </p> -->
           </div>
           <div class="under-right">
             <span class="orangered">12</span><br />
@@ -56,20 +66,12 @@
     </div>
 
     <div class="row mt-5">
-      <div class="col-sm-6">
-        <div class="profile-card">
-          trade #1
-        </div>
+      <div class="col-sm-6" *ngFor="let skill of skills">
+        <template-card-skill [skill]="skill"></template-card-skill>
       </div>
-      <div class="col-sm-6">
-        <div class="profile-card">
-          trade #2
-        </div>
+      <div class="col-sm-6" *ngFor="let trade of trades">
+        <template-card-trade [trade]="trade"></template-card-trade>
       </div>
-    </div>
-
-    <div class="row" *ngIf="profile">
-      {{profile.place.latitude}} x {{profile.place.longitude}}
     </div>
   </div>
 </div>
@@ -87,7 +89,4 @@
       Your address will never be shown to the public. People will only the city you're in.
     </p>
   </div>
-  <!-- <div class="modal-footer">
-    <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
-  </div> -->
 </ng-template>

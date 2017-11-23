@@ -1,0 +1,40 @@
+<div class="profile-card">
+  <div class="header">
+    <h2 class="text-center">{{skill.name}}</h2>
+    <p class="text-center">
+      <span class="p-3">
+        <i class="fa fa-fw fa-users" aria-hidden="true"></i>
+        <a [routerLink]="['']">100</a>
+      </span>
+      <span class="p-3">
+        <i class="fa fa-fw fa-cubes" aria-hidden="true"></i>
+        <a [routerLink]="['']">IT</a>
+      </span>
+    </p>
+  </div>
+  <p class="content">
+    {{skill.content}}
+  </p>
+  <div class="footer">
+    <div class="row">
+      <div class="col text-center">
+        <a [routerLink]="['']">
+          <i class="fa fa-fw fa-briefcase" aria-hidden="true"></i>
+          Endorse
+        </a>
+      </div>
+      <div class="col text-center">
+        <a [routerLink]="['']">
+          <i class="fa fa-fw fa-link" aria-hidden="true"></i>
+          Contact
+        </a>
+      </div>
+      <div class="col text-center">
+        <a [routerLink]="['']">
+          <i class="fa fa-fw fa-star" aria-hidden="true"></i>
+          Favourite
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

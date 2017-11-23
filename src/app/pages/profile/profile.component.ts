@@ -5,7 +5,7 @@ import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-boo
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 
-import { User } from '../../shared';
+import { User, Skill, Trade } from '../../shared';
 import { UsersService } from '../../shared/users.service';
 import { AuthService } from '../../shared/auth.service';
 
@@ -24,7 +24,8 @@ export class ProfileComponent implements OnInit {
   modal: NgbModalRef;
 
   givenAddress: string;
-  text: string = 'developer, front-end';
+  skills: Array<Skill>;
+  trades: Array<Trade>;
 
   constructor(
     private usersService: UsersService,
@@ -34,6 +35,14 @@ export class ProfileComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.editable = false;
+    this.skills = [{
+      name: 'Developer',
+      content: 'I extended my compression algorithm to support... get this... 12-bit color. Okay, so our users will be able to experience a 10 percent increase in image quality with absolutely no increase in server load whatsoever.'
+    }];
+    this.trades = [{
+      name: 'Smartphone',
+      content: 'Something I got from Raviga.'
+    }];
   }
 
   ngOnInit() {
