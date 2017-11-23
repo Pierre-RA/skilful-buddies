@@ -70,11 +70,11 @@
       </div>
     </div>
 
-    <div class="row mt-5" *ngIf="profile">
-      <div class="col-sm-6" *ngFor="let skill of profile.skills">
+    <div class="row mt-1" *ngIf="profile">
+      <div class="col-sm-6 my-3" *ngFor="let skill of profile.skills">
         <template-card-skill [skill]="skill"></template-card-skill>
       </div>
-      <div class="col-sm-6" *ngFor="let trade of trades">
+      <div class="col-sm-6 my-3" *ngFor="let trade of trades">
         <template-card-trade [trade]="trade"></template-card-trade>
       </div>
     </div>
@@ -103,6 +103,12 @@
   <div class="modal-body">
     <form>
       ...
+      <div class="form-group row">
+        <div class="col-sm-10 text-right">
+          <button type="submit" class="btn btn-secondary" (click)="d()">Cancel</button>
+          <button type="submit" class="btn btn-warning">Add</button>
+        </div>
+      </div>
     </form>
   </div>
 </ng-template>

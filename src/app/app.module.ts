@@ -8,6 +8,7 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
+import { MarkdownModule } from 'angular2-markdown';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -30,6 +31,7 @@ import { UsersService } from './shared/users.service';
     AgmCoreModule.forRoot({
       apiKey: environment.mapsAPI
     }),
+    MarkdownModule.forRoot(),
     AgmSnazzyInfoWindowModule,
     InlineEditorModule,
     HttpClientModule,
