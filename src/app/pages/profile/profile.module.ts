@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
@@ -15,11 +15,13 @@ import { CardTradeModule } from '../../templates/card-trade/card-trade.module';
 import { UsersService } from '../../shared/users.service';
 
 import { BadgePipe } from '../../pipes/badge.pipe';
+import { AgePipe } from '../../pipes/age.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     routing,
     HeaderModule,
     CardSkillModule,
@@ -28,7 +30,7 @@ import { BadgePipe } from '../../pipes/badge.pipe';
     AgmSnazzyInfoWindowModule,
     InlineEditorModule
   ],
-  declarations: [ProfileComponent, BadgePipe],
+  declarations: [ProfileComponent, BadgePipe, AgePipe],
   providers: [UsersService]
 })
 export class ProfileModule { }

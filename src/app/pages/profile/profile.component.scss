@@ -12,8 +12,8 @@
   z-index: 1000;
 }
 
-.above {
-  height: 100vh;
+.profile-above {
+  min-height: 100vh;
   padding-top: 95px;
   @include grey;
 }
@@ -65,7 +65,8 @@
       padding-right: 201px;
       height: 90px;
       padding: 5px;
-      .fa {
+      .fa-heartbeat,
+      .fa-globe {
         color: orangered;
       }
     }

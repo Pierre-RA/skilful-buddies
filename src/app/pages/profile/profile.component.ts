@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { Subscription } from 'rxjs/Subscription';
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
   editable: boolean;
   id: string;
   modal: NgbModalRef;
+  form: FormGroup;
 
   givenAddress: string;
   trades: Array<Trade>;
@@ -30,6 +32,7 @@ export class ProfileComponent implements OnInit {
     private usersService: UsersService,
     private authService: AuthService,
     private router: Router,
+    private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private modalService: NgbModal
   ) {
@@ -88,6 +91,11 @@ export class ProfileComponent implements OnInit {
     this.modal = this.modalService.open(content);
   }
 
+  openModalSkill(content, object) {
+    this.prepareForm(object);
+    this.openModal(content);
+  }
+
   fillPlace() {
     if (!this.profile.place) {
       this.profile.place = {
@@ -106,6 +114,10 @@ export class ProfileComponent implements OnInit {
 
   prepareForm(skill: Skill) {
     console.log(skill);
+    this.form = this.fb.group({
+      'name': ['', Validators.required],
+      'repeat': ['', Validators.required]
+    });
   }
 
 }

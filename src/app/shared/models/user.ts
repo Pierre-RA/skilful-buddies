@@ -7,6 +7,8 @@ export class User implements Serializable<User> {
   slug: string;
   gender: string;
   picture: string;
+  age: string;
+  citizenship: string;
   social: {
     facebook?: string,
     linkedIn?: string,
@@ -30,6 +32,8 @@ export class User implements Serializable<User> {
     this.slug = input['slug'];
     this.gender = input['gender'];
     this.picture = input['picture'];
+    this.age = input['age'];
+    this.citizenship = input['citizenship'];
     if (input['social']) {
       this.social = {
         facebook: input['social']['facebook'],
