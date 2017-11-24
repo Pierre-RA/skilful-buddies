@@ -9,7 +9,7 @@ import { routing } from './connect.routing';
 import { SearchService } from '../../shared/search.service';
 
 import { HeaderModule } from '../../templates/header/header.module';
-import { CardResultModule } from '../../templates/card-result/card-result.module';
+// import { CardResultModule } from '../../templates/card-result/card-result.module';
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import { CardResultModule } from '../../templates/card-result/card-result.module
     FormsModule,
     ReactiveFormsModule,
     HeaderModule,
-    CardResultModule
+    // CardResultModule
   ],
   declarations: [ConnectComponent],
   providers: [SearchService]

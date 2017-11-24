@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { FacebookService } from 'ngx-facebook';
 
 import { LandingComponent } from './landing.component';
+import { AuthService } from '../../shared/auth.service';
 
 describe('LandingComponent', () => {
   let component: LandingComponent;
@@ -8,6 +12,11 @@ describe('LandingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      providers: [ FacebookService, AuthService ],
       declarations: [ LandingComponent ]
     })
     .compileComponents();
