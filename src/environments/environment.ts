@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   apiBase: 'http://localhost:3000/',
-  mapsAPI: 'AIzaSyDRiIvpd4VwvHRz2MJJlBILCv3vVuzpUZg'
+  mapsAPI: 'AIzaSyDRiIvpd4VwvHRz2MJJlBILCv3vVuzpUZg',
+  chatBase: 'http://localhost:3000/'
 };

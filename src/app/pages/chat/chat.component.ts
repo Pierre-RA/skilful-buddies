@@ -32,6 +32,10 @@ export class ChatComponent implements OnInit {
         });
       }
     });
+
+    // this.chatService.getMessages().subscribe(message => {
+    //   console.log(message);
+    // });
   }
 
   ngOnInit() {
