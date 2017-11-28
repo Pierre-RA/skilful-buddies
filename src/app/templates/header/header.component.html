@@ -44,6 +44,6 @@
   </div>
 </header>
 
-<div class="wrapper">
+<div [ngClass]="{'wrapper-fixed': active == 'chat', 'wrapper': active != 'chat'}">
   <ng-content></ng-content>
 </div>

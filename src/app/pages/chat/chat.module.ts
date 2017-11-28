@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ChatComponent } from './chat.component';
 import { routing } from './chat.routing';
@@ -13,7 +14,9 @@ import { AuthService } from '../../shared/auth.service';
   imports: [
     CommonModule,
     HeaderModule,
-    routing
+    routing,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [ChatComponent],
   providers: [ChatService, AuthService]

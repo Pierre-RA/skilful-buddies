@@ -1,15 +1,5 @@
-.above {
-  height: 100vh;
-  padding-top: 95px;
-}
-
-.no-gutters {
-  height: 100%;
-}
-
 .left {
   height: 100%;
-  z-index: -1;
 }
 
 .scroll {
@@ -25,7 +15,6 @@
 .right {
   border-left: solid 2px rgb(250,250,250);
   background-color: rgb(250,250,250);
-  z-index: -1;
 }
 
 .header {
@@ -80,7 +69,8 @@
 
 .chat-content {
   padding-top: 52px;
-  margin-bottom: 220px;
+  margin-bottom: 216px;
+  overflow: hidden;
 }
 
 .people-card {
@@ -204,7 +194,7 @@
 
 .text-box {
   position: absolute;
-  bottom: 0;
+  bottom: 90px;
   left: 0;
   right: 0;
   padding: 10px;
@@ -219,4 +209,10 @@
     right: 15px;
     bottom: 30px;
   }
+}
+
+
+/* NEW STYLE */
+.chat {
+  height: 100%;
 }

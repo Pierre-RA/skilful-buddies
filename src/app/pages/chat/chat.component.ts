@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
+import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms';
 
 import { Chat, Message } from '../../shared/models';
 import { ChatService } from '../../shared/chat.service';
@@ -16,10 +17,12 @@ export class ChatComponent implements OnInit {
   current: Chat;
   active: number;
   profile: string;
+  form: FormGroup;
 
   constructor(
     private chatService: ChatService,
-    private authService: AuthService
+    private authService: AuthService,
+    private fb: FormBuilder
   ) {
     this.active = -1;
     this.profile = this.authService.getProfilePicture();
@@ -32,10 +35,9 @@ export class ChatComponent implements OnInit {
         });
       }
     });
-
-    // this.chatService.getMessages().subscribe(message => {
-    //   console.log(message);
-    // });
+    this.form = this.fb.group({
+      'content': ['', Validators.required]
+    });
   }
 
   ngOnInit() {
@@ -62,6 +64,16 @@ export class ChatComponent implements OnInit {
       this.active = index;
       this.current = chat;
     });
+  }
+
+  onSubmit(values) {
+    this.current.messages.push({
+      user: 'right',
+      time: '12:33',
+      text: values.content
+    });
+    this.form.controls['content'].setValue('');
+    this.scrollToBottom();
   }
 
 }

@@ -1,6 +1,6 @@
-<template-header [active]="'chat'" class="top"></template-header>
-<div class="above">
-  <div class="row no-gutters">
+<template-header [active]="'chat'" class="top">
+  <div class="chat row no-gutters">
+    <!-- LEFT PANEL -->
     <div class="col-sm-8 p-3 left">
       <div *ngIf="!current">
         <p class="chat-header">
@@ -27,15 +27,16 @@
           </div>
         </div>
         <div class="text-box">
-          <form>
+          <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
             <div class="form-group">
-              <textarea class="form-control"></textarea>
+              <textarea class="form-control" formControlName="content"></textarea>
               <button type="submit" class="btn btn-warning">Reply</button>
             </div>
           </form>
         </div>
       </div>
     </div>
+    <!-- RIGHT PANEL -->
     <div class="col-sm-4 right">
       <div class="header">
         <h3>Messages</h3>
@@ -62,4 +63,4 @@
       </div>
     </div>
   </div>
-</div>
+</template-header>

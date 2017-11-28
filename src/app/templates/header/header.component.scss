@@ -87,3 +87,7 @@ header {
   min-height: 100vh;
   @include grey;
 }
+
+.wrapper-fixed {
+  height: 100vh;
+}
