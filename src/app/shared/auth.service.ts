@@ -79,7 +79,7 @@ export class AuthService {
         window.localStorage.setItem('profile', JSON.stringify(data));
         window.localStorage.setItem('profile_id', data['_id']);
         this.sub.next(data);
-        this.router.navigate(['/search']);
+        this.router.navigate(['/profile/', data['_id']]);
       });
   }
 
