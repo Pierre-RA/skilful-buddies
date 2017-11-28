@@ -21,13 +21,9 @@ header {
     position: absolute;
     top: 0;
     right: 0;
-    color: grey;
     img {
       height: 45px;
       border-radius: 100%;
-    }
-    a {
-      color: grey;
     }
     a:hover {
       text-decoration: none;
@@ -39,6 +35,12 @@ header {
     line-height: 55px;
     padding: 0 10px;
     border-left: $silver solid 2px;
+  }
+  .blk-grey {
+    color: grey;
+    a {
+      color: grey;
+    }
   }
   .no-btn {
     background-color: transparent;

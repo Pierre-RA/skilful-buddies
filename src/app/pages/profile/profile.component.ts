@@ -59,11 +59,11 @@ export class ProfileComponent implements OnInit {
   }
 
   checkOwner(id: string) {
-    this.authService.isLoggedIn()
+    this.authService.getOwner()
       .subscribe(result => {
         if (result) {
-          this.editable = result == id;
-          this.id = result;
+          this.editable = result.id == id;
+          this.id = result.id;
         }
       });
   }

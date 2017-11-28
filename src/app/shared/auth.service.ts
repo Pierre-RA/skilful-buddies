@@ -4,31 +4,52 @@ import { HttpClient } from '@angular/common/http';
 import { FacebookService, LoginOptions, LoginResponse } from 'ngx-facebook';
 
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/of';
 
 import { environment } from '../../environments/environment';
 import { User } from './models';
+import { UsersService } from './users.service';
 
 @Injectable()
 export class AuthService {
 
   apiBase: string;
   redirectUrl: string;
+  sub: BehaviorSubject<User>;
+  profile: User;
 
   constructor(
     private router: Router,
     private http: HttpClient,
-    private fb: FacebookService
+    private fb: FacebookService,
+    private usersService: UsersService
   ) {
     this.apiBase = environment.apiBase;
     fb.init({
       appId: '1465809513539908',
       version: 'v2.11'
     });
+    this.sub = new BehaviorSubject<User>(null);
+    this.usersService.getOwner()
+      .subscribe(user => {
+        this.sub.next(user);
+      });
   }
 
-  isLoggedIn(): Observable<string> {
-    return Observable.of(window.localStorage.getItem('profile_id'));
+  getOwner(): Observable<User> {
+    return this.sub.asObservable();
+  }
+
+  getOwnerId(): string {
+    return window.localStorage.getItem('profile_id');
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.sub.asObservable().map(user => {
+      return !!user;
+    });
   }
 
   getProfilePicture(): string {
@@ -53,9 +74,11 @@ export class AuthService {
   serverLogin() {
     this.http.post(
       this.apiBase + 'users/facebook',
-      { 'access_token': window.localStorage.getItem('token') }).subscribe(data => {
+      { 'access_token': window.localStorage.getItem('token') })
+      .subscribe((data: User) => {
         window.localStorage.setItem('profile', JSON.stringify(data));
         window.localStorage.setItem('profile_id', data['_id']);
+        this.sub.next(data);
         this.router.navigate(['/search']);
       });
   }
@@ -64,6 +87,7 @@ export class AuthService {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('profile');
     window.localStorage.removeItem('profile_id');
+    this.sub.next(null);
     this.router.navigate(['/']);
   }
 

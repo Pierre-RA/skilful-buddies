@@ -1,12 +1,12 @@
 <header>
   <h1 class="title"><a class="skilful-buddies" [routerLink]="[homeURI]">Skilful Buddies</a></h1>
   <div class="pinned-right">
-    <span class="block">
+    <span class="block blk-grey" *ngIf="profile">
       <template-notification [type]="'user'" [notifications]="getUsersNotifications()"></template-notification>
       <template-notification [type]="'bell'" [notifications]="getAlertNotifications()"></template-notification>
       <template-notification [type]="'comments'" [notifications]="getCommentsNotifications()"></template-notification>
     </span>
-    <span class="block" *ngIf="profile">
+    <span class="block blk-grey" *ngIf="profile">
       <div ngbDropdown class="d-inline-block">
         <button class="no-btn dark-grey" id="profileLink" ngbDropdownToggle>
           {{profile.name}}
@@ -23,10 +23,13 @@
           </button>
         </div>
       </div>
-
+    </span>
+    <span class="block" *ngIf="!profile">
+      <a class="btn btn-outline-success" [routerLink]="['/sign-in']">Sign in</a>
+      <a class="btn btn-success" [routerLink]="['/sign-up']">Sign up</a>
     </span>
   </div>
-  <div class="underline">
+  <div class="underline" *ngIf="profile">
     <ul>
       <li [ngClass]="{'active': active == 'search'}">
         <a [routerLink]="['/search']">Search</a>

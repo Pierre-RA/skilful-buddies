@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Notification, User } from '../../shared';
 import { AuthService } from '../../shared/auth.service';
-import { UsersService } from '../../shared/users.service';
 
 @Component({
   selector: 'template-header',
@@ -22,15 +21,15 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private usersService: UsersService
   ) {
     this.homeURI = '';
-    this.getProfile();
+    this.sub = this.authService.getOwner()
+      .subscribe(user => {
+        this.getProfile(user);
+      });
   }
 
-  ngOnInit() {
-    // this.getProfile();
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.sub.unsubscribe();
@@ -44,16 +43,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([link]);
   }
 
-  getProfile() {
-    this.authService.isLoggedIn()
-      .subscribe(result => {
-        if (result) {
-          this.homeURI = '/profile/' + result;
-        }
-      });
-    this.sub = this.usersService.getOwner().subscribe(user => {
-      this.profile = user;
-    });
+  getProfile(user: User) {
+    this.homeURI = user ? '/profile/' + user.id : '';
+    this.profile = user;
   }
 
   getUsersNotifications() {
