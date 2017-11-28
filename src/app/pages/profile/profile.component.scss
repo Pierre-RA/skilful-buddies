@@ -1,21 +1,7 @@
-@mixin grey {
-  background: rgb(255,255,255);
-  background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%);
-  background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
-  background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 );
-}
-
 .top {
   position: fixed;
   width: 100vw;
   z-index: 1000;
-}
-
-.profile-above {
-  min-height: 100vh;
-  padding-top: 95px;
-  @include grey;
 }
 
 .container {
@@ -24,7 +10,8 @@
 
 .header {
   position: relative;
-  box-shadow: 0 0 2px rgba(0,0,0,0.4);
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  border-radius: 5px;
   .orangered {
     font-size: 2em;
     font-weight: bold;
@@ -44,6 +31,7 @@
     img {
       height: 182px;
       width: 182px;
+      border-top-left-radius: 5px;
     }
   }
   .map {
@@ -60,6 +48,7 @@
   .under {
     position: relative;
     background-color: white;
+    border-bottom-left-radius: 5px;
     h1 {
       font-size: 1.5em;
       line-height: 2;
@@ -69,6 +58,7 @@
       padding-right: 201px;
       height: 90px;
       padding: 5px;
+      border-bottom-left-radius: 5px;
       .fa-heartbeat,
       .fa-globe {
         color: orangered;
@@ -81,7 +71,7 @@
       height: 90px;
       width: 150px;
       background-color: rgb(250,250,250);
-      border-left: solid 1px silver;
+      border-left: solid 2px rgb(245,245,245);
       text-align: center;
     }
     .buttons {

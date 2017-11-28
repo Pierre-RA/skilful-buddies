@@ -1,6 +1,5 @@
-<template-header [active]="'profile'" class="top"></template-header>
-<div class="profile-above">
-  <div class="container">
+<template-header [active]="'profile'" class="top">
+  <div class="container pt-3">
     <div class="header" *ngIf="profile">
       <div class="header-left">
         <div class="profile">
@@ -92,7 +91,10 @@
       </div>
     </div>
   </div>
-</div>
+</template-header>
+<!-- <div class="profile-above">
+
+</div> -->
 
 <ng-template #addressModal let-c="close" let-d="dismiss">
   <div class="modal-header">
