@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 // import * as io from 'socket.io-client';
 
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/of';
 
-import { Chat } from './models';
+import { Chat, Message } from './models';
 import * as Chats from './mock/chat.json';
 import { environment } from '../../environments/environment';
 
@@ -15,9 +16,13 @@ export class ChatService {
 
   private chatBase = '';
   // private socket;
+  private sub: BehaviorSubject<Chat>;
+  private current: Chat;
 
   constructor() {
     this.chatBase = environment.chatBase;
+    this.current = null;
+    this.sub = new BehaviorSubject<Chat>(null);
   }
 
   getHeaders(): Observable<Array<Chat>> {
@@ -25,7 +30,15 @@ export class ChatService {
   }
 
   getContent(id: number): Observable<Chat> {
-    return Observable.of(chats[id]);
+    this.current = chats[id];
+    this.sub.next(this.current);
+    return this.sub.asObservable();
+    // return Observable.of(chats[id]);
+  }
+
+  addMessage(id: number, message: Message) {
+    this.current.messages.push(message);
+    this.sub.next(this.current);
   }
 
   // sendMessage(message){

@@ -27,9 +27,9 @@
           </div>
         </div>
         <div class="text-box">
-          <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <textarea class="form-control" formControlName="content"></textarea>
+              <textarea class="form-control" formControlName="content" (keydown)="onKeySubmitted($event)" (keyup)="onClear()"></textarea>
               <button type="submit" class="btn btn-warning">Reply</button>
             </div>
           </form>
