@@ -55,7 +55,6 @@ export class ProfileComponent implements OnInit {
   getProfile(user: User) {
     this.profile = user;
     this.fillPlace();
-    console.log(this.profile);
   }
 
   checkOwner(id: string) {

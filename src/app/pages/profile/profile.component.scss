@@ -60,6 +60,10 @@
   .under {
     position: relative;
     background-color: white;
+    h1 {
+      font-size: 1.5em;
+      line-height: 2;
+    }
     .under-left {
       width: 100%;
       padding-right: 201px;
@@ -96,11 +100,6 @@
       }
     }
   }
-}
-
-h1 {
-  font-size: 1.5em;
-  line-height: 2;
 }
 
 .header-right {
