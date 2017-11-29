@@ -16,13 +16,15 @@
             {{current.title}}
           </p>
         </div>
-        <div class="chat-content">
-          <div class="chatbox chatbox-{{message.user}}" *ngFor="let message of current.messages">
+        <div class="chat-content" *ngIf="current">
+          <div *ngFor="let message of current.messages"
+            class="chatbox"
+            [ngClass]="{ 'chatbox-left': !isOwner(message.user), 'chatbox-right': isOwner(message.user)}">
             <div class="line">
-              <img [src]="current.image" *ngIf="message.user == 'left'"/>
-              <img [src]="profile" *ngIf="message.user == 'right'" />
+              <img [src]="current.image" *ngIf="!isOwner(message.user)"/>
+              <img [src]="profile.picture" *ngIf="isOwner(message.user)" />
               <p class="colored" [innerHTML]="message.text"></p>
-              <p class="date" [innerHTML]="message.time"></p>
+              <p class="date">{{message.date | date:'shortTime'}}</p>
             </div>
           </div>
         </div>

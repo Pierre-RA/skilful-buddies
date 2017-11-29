@@ -17,9 +17,11 @@ export class Chat implements Serializable<Chat> {
     this.last = input['last'];
     this.read = input['read'];
     this.messages = [];
-    input['messages'].forEach(message => {
-      this.messages.push(message);
-    });
+    if (input['messages']) {
+      input['messages'].forEach(message => {
+        this.messages.push(message);
+      });
+    }
     return this;
   }
 
@@ -35,5 +37,5 @@ export class Chat implements Serializable<Chat> {
 export interface Message {
   user: string;
   text: string;
-  time: string;
+  date: string;
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-// import * as io from 'socket.io-client';
+import { HttpClient } from '@angular/common/http';
+import * as io from 'socket.io-client';
 
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -14,13 +15,17 @@ const chats: Array<Chat> = Chat.getChats(Chats['chats']);
 @Injectable()
 export class ChatService {
 
-  private chatBase = '';
-  // private socket;
+  private chatBase: string;
+  private apiBase: string;
+  private socket;
   private sub: BehaviorSubject<Chat>;
   private current: Chat;
 
-  constructor() {
+  constructor(
+    private http: HttpClient
+  ) {
     this.chatBase = environment.chatBase;
+    this.apiBase = environment.apiBase;
     this.current = null;
     this.sub = new BehaviorSubject<Chat>(null);
   }
@@ -30,32 +35,36 @@ export class ChatService {
   }
 
   getContent(id: number): Observable<Chat> {
-    this.current = chats[id];
-    this.sub.next(this.current);
-    return this.sub.asObservable();
-    // return Observable.of(chats[id]);
+    return this.http.get<Chat>(this.apiBase + 'chat/' + id)
+      .catch(err => {
+        return Observable.of(null);
+      });
+  }
+
+  getMessage(): Observable<Message> {
+    let observable = new Observable<Message>(observer => {
+        this.socket = io(this.chatBase);
+        this.socket.on('message', (data) => {
+          observer.next(data);
+        });
+        return () => {
+          this.socket.disconnect();
+        };
+      })
+      return observable;
   }
 
   addMessage(id: number, message: Message) {
-    this.current.messages.push(message);
-    this.sub.next(this.current);
+    this.socket.emit('add-message', {
+      id: id,
+      user: message.user,
+      text: message.text,
+      date: message.date
+    });
   }
 
-  // sendMessage(message){
-  //   this.socket.emit('add-message', message);
-  // }
-  //
-  // getMessages() {
-  //   let observable = new Observable(observer => {
-  //     this.socket = io(this.chatBase);
-  //     this.socket.on('message', (data) => {
-  //       observer.next(data);
-  //     });
-  //     return () => {
-  //       this.socket.disconnect();
-  //     };
-  //   })
-  //   return observable;
-  // }
+  addChat(user1: string, user2: string, title: string) {
+    console.log('add chat');
+  }
 
 }

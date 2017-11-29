@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, AfterViewChecked, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewChecked, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms';
 
-import { Chat, Message } from '../../shared/models';
+import { Chat, Message, User } from '../../shared/models';
 import { ChatService } from '../../shared/chat.service';
 import { AuthService } from '../../shared/auth.service';
+
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-chat',
@@ -16,9 +18,11 @@ export class ChatComponent implements OnInit {
   chats: Array<Chat>;
   current: Chat;
   active: number;
-  profile: string;
+  profile: User;
   form: FormGroup;
   textBoxStatus: boolean;
+  userSub: Subscription;
+  chatSub: Subscription;
 
   constructor(
     private chatService: ChatService,
@@ -27,15 +31,24 @@ export class ChatComponent implements OnInit {
   ) {
     this.textBoxStatus = false;
     this.active = -1;
-    this.profile = this.authService.getProfilePicture();
+    let userSub = this.authService.getOwner()
+      .subscribe(user => {
+        this.profile = user;
+      });
     this.chatService.getHeaders().subscribe(chats => {
       this.chats = chats;
       if (this.chats.length > 0) {
         this.active = 0;
         this.chatService.getContent(0).subscribe(chat => {
           this.current = chat;
+          if (!chat) {
+            this.current = new Chat().deserialize({});
+          }
         });
       }
+    });
+    let chatSub = this.chatService.getMessage().subscribe(data => {
+      console.log('message', data);
     });
     this.form = this.fb.group({
       'content': ['', Validators.required]
@@ -44,6 +57,11 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.scrollToBottom();
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
+    this.chatSub.unsubscribe();
   }
 
   ngAfterViewChecked() {
@@ -68,12 +86,18 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  isOwner(id: string) {
+    return id == this.profile['_id'];
+  }
+
   onSubmit() {
-    this.chatService.addMessage(this.active, {
-      user: 'right',
-      time: '12:33',
+    let message: Message = {
+      user: this.profile['_id'],
+      date: new Date().toISOString(),
       text: this.form.controls['content'].value
-    });
+    };
+    this.chatService.addMessage(this.active, message);
+    this.current.messages.push(message);
     this.form.controls['content'].setValue('');
     this.scrollToBottom();
   }
