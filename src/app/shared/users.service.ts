@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/publishReplay';
 
 import { environment } from '../../environments/environment';
-import { User } from './models';
+import { User, PartialFriendList } from './models';
 
 @Injectable()
 export class UsersService {
@@ -25,6 +25,14 @@ export class UsersService {
 
   getUser(id: string): Observable<User> {
     return this.http.get<User>(this.apiBase + 'users/' + id);
+  }
+
+  getUserFriends(id: string, like: string): Observable<PartialFriendList> {
+    let params = null;
+    if (like) {
+      params = new HttpParams().set('name', like);
+    }
+    return this.http.get<PartialFriendList>(this.apiBase + 'users/friends/' + id, { params: params });
   }
 
   updateUser(id: string, update: Object): Observable<User> {

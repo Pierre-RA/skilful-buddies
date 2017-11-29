@@ -4,3 +4,4 @@ export * from './notification';
 export * from './chat';
 export * from './skill';
 export * from './trade';
+export * from './partial-friend';

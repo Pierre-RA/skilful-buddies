@@ -7,10 +7,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/of';
 
 import { Chat, Message } from './models';
-import * as Chats from './mock/chat.json';
 import { environment } from '../../environments/environment';
-
-const chats: Array<Chat> = Chat.getChats(Chats['chats']);
 
 @Injectable()
 export class ChatService {
@@ -31,10 +28,13 @@ export class ChatService {
   }
 
   getHeaders(): Observable<Array<Chat>> {
-    return Observable.of(chats);
+    return this.http.get<Array<Chat>>(this.apiBase + 'chat')
+      .catch(err => {
+        return Observable.of(null);
+      });
   }
 
-  getContent(id: number): Observable<Chat> {
+  getContent(id: string): Observable<Chat> {
     return this.http.get<Chat>(this.apiBase + 'chat/' + id)
       .catch(err => {
         return Observable.of(null);
@@ -54,7 +54,7 @@ export class ChatService {
       return observable;
   }
 
-  addMessage(id: number, message: Message) {
+  addMessage(id: string, message: Message) {
     this.socket.emit('add-message', {
       id: id,
       user: message.user,
@@ -63,8 +63,13 @@ export class ChatService {
     });
   }
 
-  addChat(user1: string, user2: string, title: string) {
-    console.log('add chat');
+  addChat(user1: string, user2: string, title: string): Observable<Chat> {
+    return this.http.post<Chat>(this.apiBase + 'chat', {
+      user1: user1,
+      user2: user2,
+      title: title,
+      messages: []
+    });
   }
 
 }

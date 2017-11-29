@@ -10,8 +10,10 @@
       <div class="scroll" #scrollable>
         <div class="chat-top" *ngIf="current">
           <p>
-            <img [src]="current.image" />
-            {{current.name}}
+            <img [src]="current.user1.picture" *ngIf="!isOwner(current.user1._id)" />
+            <img [src]="current.user2.picture" *ngIf="!isOwner(current.user2._id)" />
+            <span *ngIf="!isOwner(current.user1._id)">{{current.user1.name}}</span>
+            <span *ngIf="!isOwner(current.user2._id)">{{current.user2.name}}</span>
             <span *ngIf="current.title">&ndash;</span>
             {{current.title}}
           </p>
@@ -21,7 +23,8 @@
             class="chatbox"
             [ngClass]="{ 'chatbox-left': !isOwner(message.user), 'chatbox-right': isOwner(message.user)}">
             <div class="line">
-              <img [src]="current.image" *ngIf="!isOwner(message.user)"/>
+              <img [src]="current.user1.picture" *ngIf="!isOwner(message.user) && !isOwner(current.user1._id)"/>
+              <img [src]="current.user2.picture" *ngIf="!isOwner(message.user) && !isOwner(current.user2._id)"/>
               <img [src]="profile.picture" *ngIf="isOwner(message.user)" />
               <p class="colored" [innerHTML]="message.text"></p>
               <p class="date">{{message.date | date:'shortTime'}}</p>
@@ -43,7 +46,7 @@
       <div class="header">
         <h3>Messages</h3>
         <p class="actions">
-          <i class="fa fa-fw fa-pencil-square-o" (click)="addChat()"></i>
+          <i class="fa fa-fw fa-pencil-square-o" (click)="addChat(chatModal)"></i>
         </p>
       </div>
       <div class="loading-headers" *ngIf="!chats">
@@ -51,9 +54,10 @@
         <span class="sr-only">Loading...</span>
       </div>
       <div *ngIf="chats">
-        <div class="people-card" [ngClass]="{'people-active': active == i}" *ngFor="let chat of chats; let i = index" (click)="goToChat(i)">
+        <div class="people-card" [ngClass]="{'people-active': active == chat._id}" *ngFor="let chat of chats" (click)="goToChat(chat._id)">
           <p class="image">
-            <img [src]="chat.image" />
+            <img [src]="chat.user1.picture" *ngIf="!isOwner(chat.user1._id)" />
+            <img [src]="chat.user2.picture" *ngIf="!isOwner(chat.user2._id)" />
           </p>
           <p class="name" [ngClass]="{'unread': !chat.read}" [innerHTML]="chat.name"></p>
           <p class="subtext" [ngClass]="{'unread': !chat.read}" [innerHTML]="chat.title" *ngIf="chat.title"></p>
@@ -66,3 +70,24 @@
     </div>
   </div>
 </template-header>
+
+<ng-template #chatModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3>Create a new chat</h3>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" class="form-control form-control-lg"
+      [ngbTypeahead]="queryNames"
+      [inputFormatter]="formatter"
+      [resultTemplate]="friend"
+      (selectItem)="friendSelected($event)"
+      placeholder="Find your friends">
+  </div>
+</ng-template>
+
+<ng-template #friend let-r="result" let-t="term">
+  {{ r.name }}
+</ng-template>
