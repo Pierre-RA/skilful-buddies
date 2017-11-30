@@ -1,21 +1,6 @@
-@mixin grey {
-  background: rgb(255,255,255);
-  background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%);
-  background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
-  background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 );
-}
-
-.above {
-  @include grey;
-  min-height: 100vh;
-}
-
 .container {
   background-color: white;
   box-shadow: 1px 2px 5px rgba(200,200,200,0.4);
-  min-height: 100vh;
-  height: inherit;
 }
 
 .purple {

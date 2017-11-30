@@ -1,5 +1,4 @@
-<div class="above">
-  <template-header [active]="'search'"></template-header>
+<template-header [active]="'search'">
   <div class="container">
     <form class="search" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
       <div class="form-row align-items-center justify-content-center">
@@ -32,23 +31,22 @@
         class="col-sm-10 my-1"></template-card-result>
     </div>
   </div>
+</template-header>
 
-  <ng-template #introModal let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title">Demo mode</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>This is a demo mode, almost nothing is working as intended&hellip;</p>
-      <p>
-        Start looking up by searching developer in the search box ;-)
-      </p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
-    </div>
-  </ng-template>
-
-</div>
+<ng-template #introModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Demo mode</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>This is a demo mode, almost nothing is working as intended&hellip;</p>
+    <p>
+      Start looking up by searching developer in the search box ;-)
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
