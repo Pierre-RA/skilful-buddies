@@ -2,7 +2,8 @@
   box-shadow: 0 0 5px rgba(0,0,0,0.4);
   background-color: white;
   border-radius: 5px;
-  .header {
+  .profile-card-header {
+    position: relative;
     height: 120px;
     width: 100%;
     background-color: silver;
@@ -54,6 +55,17 @@
     a:hover {
       text-decoration: none;
       background-color: silver;
+    }
+  }
+  .edition {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    button {
+      color: white;
+    }
+    button:hover {
+      color: orange;
     }
   }
 }

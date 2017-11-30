@@ -128,7 +128,7 @@ export class ProfileComponent implements OnInit {
       skill = new Skill().deserialize({
         name: '',
         content: '',
-        owner: this.profile.id
+        owner: this.profile['_id']
       });
       this.skillEdit = false;
     }
@@ -147,11 +147,21 @@ export class ProfileComponent implements OnInit {
         this.modal.close();
       });
     } else {
+      if (!this.skillForm.value['_id']) {
+        delete this.skillForm.value['_id'];
+      }
       this.skillsService.addSkill(this.skillForm.value).subscribe(skill => {
         this.profile.skills.push(skill);
         this.modal.close();
       });
     }
+  }
+
+  removeSkill(skill: Skill) {
+    this.skillsService.removeSkill(this.skillForm.value).subscribe(skill => {
+      this.profile.skills.splice(this.index, 1);
+      this.modal.close();
+    })
   }
 
 }

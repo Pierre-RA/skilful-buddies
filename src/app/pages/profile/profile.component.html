@@ -84,7 +84,7 @@
 
     <div class="row mt-1" *ngIf="profile">
       <div class="col-sm-6 my-3" *ngFor="let skill of profile.skills; let i = index">
-        <template-card-skill [skill]="skill" (onEdit)="openModalSkill(editSkill, skill, i)"></template-card-skill>
+        <template-card-skill [skill]="skill" [editable]="editable" (onEdit)="openModalSkill(editSkill, skill, i)"></template-card-skill>
       </div>
       <div class="col-sm-6 my-3" *ngFor="let trade of profile.trades">
         <template-card-trade [trade]="trade"></template-card-trade>
@@ -112,6 +112,9 @@
   <div class="modal-header">
     <h3 *ngIf="!skillEdit">Add a new skill</h3>
     <h3 *ngIf="skillEdit">Edition of {{skillForm.controls['name'].value}}</h3>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
   <div class="modal-body">
     <form [formGroup]="skillForm" (ngSubmit)="onSubmitSkill()">
@@ -148,6 +151,15 @@
         </div>
       </div>
     </form>
+  </div>
+  <div class="modal-footer" *ngIf="skillEdit">
+    <span class="text-muted w-100 text-left">
+      Is this skill no longer yours?
+    </span>
+    <button class="btn btn-danger pointer" (click)="removeSkill()">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+      Delete
+    </button>
   </div>
 </ng-template>
 

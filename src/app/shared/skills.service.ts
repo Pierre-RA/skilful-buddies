@@ -18,6 +18,7 @@ export class SkillsService {
   }
 
   addSkill(skill: Skill): Observable<Skill> {
+    console.log(skill);
     return this.http.post<Skill>(this.apiBase + 'skills', skill, {
       headers: new HttpHeaders().set('Authorization', 'JWT ' + window.localStorage.getItem('session-token'))
     });
@@ -25,6 +26,12 @@ export class SkillsService {
 
   updateSkill(skill: Skill): Observable<Skill> {
     return this.http.put<Skill>(this.apiBase + 'skills/' + skill['_id'], skill, {
+      headers: new HttpHeaders().set('Authorization', 'JWT ' + window.localStorage.getItem('session-token'))
+    });
+  }
+
+  removeSkill(skill: Skill): Observable<Skill> {
+    return this.http.delete<Skill>(this.apiBase + 'skills/' + skill['_id'], {
       headers: new HttpHeaders().set('Authorization', 'JWT ' + window.localStorage.getItem('session-token'))
     });
   }

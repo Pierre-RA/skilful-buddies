@@ -10,12 +10,12 @@ import { Skill } from '../../shared';
 export class CardSkillComponent implements OnInit {
 
   @Input('skill') skill: Skill;
+  @Input('editable') editable: boolean;
   @Output() onEdit = new EventEmitter<Skill>();
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   edit() {
     this.onEdit.emit(this.skill);
