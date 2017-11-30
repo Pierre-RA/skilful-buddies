@@ -61,8 +61,8 @@ export class ProfileComponent implements OnInit {
     this.authService.getOwner()
       .subscribe(result => {
         if (result) {
-          this.editable = result.id == id;
-          this.id = result.id;
+          this.editable = result['_id'] == id;
+          this.id = result['_id'];
         }
       });
   }
