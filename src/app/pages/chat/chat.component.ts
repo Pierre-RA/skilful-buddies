@@ -49,6 +49,7 @@ export class ChatComponent implements OnInit {
         this.profile = user;
       });
     this.chatService.getHeaders().subscribe(chats => {
+      console.log(chats);
       this.chats = chats;
       if (this.chats && this.chats.length > 0) {
         this.noChat = false;
@@ -74,7 +75,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    if (this.chatSub) {
+    if (this.userSub) {
       this.userSub.unsubscribe();
     }
     if (this.chatSub) {
@@ -101,6 +102,7 @@ export class ChatComponent implements OnInit {
     this.chatService.getContent(id).subscribe(chat => {
       this.active = id;
       this.current = chat;
+      this.current.read = true;
       this.openSocket(this.active);
     });
   }
@@ -108,7 +110,7 @@ export class ChatComponent implements OnInit {
   openSocket(id: string) {
     this.chatService.joinRoom(id, this.profile.name);
     this.chatSub = this.chatService.getMessage().subscribe(data => {
-      if (!this.isOwner(data['user'])) {
+      if (!this.isOwner(data['user']) && this.active == data['id']) {
         this.current.messages.push({
           user: data['user'],
           text: data['text'],

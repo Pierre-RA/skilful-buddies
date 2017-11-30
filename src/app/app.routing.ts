@@ -48,7 +48,8 @@ export const routes: Routes = [
   {
     path: 'chat',
     loadChildren: 'app/pages/chat/chat.module#ChatModule',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [ AuthGuardService ]
   },
   {
     path: 'profile/:id',

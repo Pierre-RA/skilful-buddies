@@ -67,7 +67,7 @@
           <p class="subtext" [ngClass]="{'unread': !chat.read}" [innerHTML]="chat.subtext" *ngIf="chat.subtext"></p>
           <p class="last" *ngIf="chat.last">
             {{chat.last}}
-          </p>
+          </p>{{chat.read}}
         </div>
       </div>
     </div>
