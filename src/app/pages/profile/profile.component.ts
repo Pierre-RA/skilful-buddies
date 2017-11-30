@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit {
   index: number;
 
   givenAddress: string;
-  trades: Array<Trade>;
 
   constructor(
     private usersService: UsersService,
@@ -44,10 +43,6 @@ export class ProfileComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.editable = false;
-    this.trades = [{
-      name: 'Smartphone',
-      content: 'Something I got from Raviga.'
-    }];
   }
 
   ngOnInit() {

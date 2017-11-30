@@ -3,11 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Skill } from './models';
+import { Trade } from './models';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class SkillsService {
+export class TradeService {
 
   private apiBase: string;
 
@@ -17,20 +17,20 @@ export class SkillsService {
     this.apiBase = environment.apiBase;
   }
 
-  addSkill(skill: Skill): Observable<Skill> {
-    return this.http.post<Skill>(this.apiBase + 'skills', skill, {
+  addTrade(trade: Trade): Observable<Trade> {
+    return this.http.post<Trade>(this.apiBase + 'trade', trade, {
       headers: new HttpHeaders().set('Authorization', 'JWT ' + window.localStorage.getItem('session-token'))
     });
   }
 
-  updateSkill(skill: Skill): Observable<Skill> {
-    return this.http.put<Skill>(this.apiBase + 'skills/' + skill['_id'], skill, {
+  updateTrade(trade: Trade): Observable<Trade> {
+    return this.http.put<Trade>(this.apiBase + 'trade/' + trade['_id'], trade, {
       headers: new HttpHeaders().set('Authorization', 'JWT ' + window.localStorage.getItem('session-token'))
     });
   }
 
-  removeSkill(skill: Skill): Observable<Skill> {
-    return this.http.delete<Skill>(this.apiBase + 'skills/' + skill['_id'], {
+  removeTrade(trade: Trade): Observable<Trade> {
+    return this.http.delete<Trade>(this.apiBase + 'trade/' + trade['_id'], {
       headers: new HttpHeaders().set('Authorization', 'JWT ' + window.localStorage.getItem('session-token'))
     });
   }
