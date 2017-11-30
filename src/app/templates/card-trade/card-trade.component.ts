@@ -12,10 +12,21 @@ export class CardTradeComponent implements OnInit {
   @Input('trade') trade: Trade;
   @Input('editable') editable: boolean;
   @Output() onEdit = new EventEmitter<Trade>();
+  shadow: string;
 
-  constructor() { }
+  constructor() {
+    this.shadow = 'radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%)'
+  }
 
   ngOnInit() {
+    if (this.trade.color) {
+      // this.shadow += ',' + this.trade.color;
+      this.shadow = this.trade.color;
+    }
+  }
+
+  edit() {
+    this.onEdit.emit(this.trade);
   }
 
 }

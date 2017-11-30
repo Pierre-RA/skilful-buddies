@@ -87,7 +87,7 @@
         <template-card-skill [skill]="skill" [editable]="editable" (onEdit)="openModalSkill(editSkill, skill, i)"></template-card-skill>
       </div>
       <div class="col-sm-6 my-3" *ngFor="let trade of profile.trades">
-        <template-card-trade [trade]="trade"></template-card-trade>
+        <template-card-trade [trade]="trade" [editable]="editable" (onEdit)="openModalTrade(editTrade, trade, i)"></template-card-trade>
       </div>
     </div>
   </div>

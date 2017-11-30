@@ -15,7 +15,9 @@ export class CardSkillComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.skill);
+  }
 
   edit() {
     this.onEdit.emit(this.skill);

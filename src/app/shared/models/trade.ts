@@ -8,6 +8,7 @@ export class Trade implements Serializable<Trade> {
     value: number,
     type: string
   };
+  color: string;
 
   deserialize<Trade>(input: Object): this {
     this.name = input['name'];
@@ -19,6 +20,7 @@ export class Trade implements Serializable<Trade> {
         type: input['price']['type']
       };
     }
+    this.color = input['color'];
     return this;
   }
 }
