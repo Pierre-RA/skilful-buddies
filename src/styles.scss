@@ -37,6 +37,10 @@ ngb-typeahead-window {
   color: rgb(100,100,100);
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .google,
 .hover-google:hover {
   color: $google;

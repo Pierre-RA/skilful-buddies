@@ -13,6 +13,7 @@ import { CardSkillModule } from '../../templates/card-skill/card-skill.module';
 import { CardTradeModule } from '../../templates/card-trade/card-trade.module';
 
 import { UsersService } from '../../shared/users.service';
+import { SkillsService } from '../../shared/skills.service';
 
 import { BadgePipe } from '../../pipes/badge.pipe';
 import { AgePipe } from '../../pipes/age.pipe';
@@ -31,6 +32,6 @@ import { AgePipe } from '../../pipes/age.pipe';
     InlineEditorModule
   ],
   declarations: [ProfileComponent, BadgePipe, AgePipe],
-  providers: [UsersService]
+  providers: [UsersService, SkillsService]
 })
 export class ProfileModule { }

@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap';
 import { User, Skill, Trade } from '../../shared';
 import { UsersService } from '../../shared/users.service';
 import { AuthService } from '../../shared/auth.service';
+import { SkillsService } from '../../shared/skills.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +24,12 @@ export class ProfileComponent implements OnInit {
   editable: boolean;
   id: string;
   modal: NgbModalRef;
-  form: FormGroup;
+
+  skillForm: FormGroup;
+  skillEdit: boolean;
+  tradeForm: FormGroup;
+  tradeEdit: boolean;
+  index: number;
 
   givenAddress: string;
   trades: Array<Trade>;
@@ -31,6 +37,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
+    private skillsService: SkillsService,
     private router: Router,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -90,11 +97,6 @@ export class ProfileComponent implements OnInit {
     this.modal = this.modalService.open(content);
   }
 
-  openModalSkill(content, object) {
-    this.prepareForm(object);
-    this.openModal(content);
-  }
-
   fillPlace() {
     if (!this.profile.place) {
       this.profile.place = {
@@ -111,12 +113,45 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  prepareForm(skill: Skill) {
-    console.log(skill);
-    this.form = this.fb.group({
-      'name': ['', Validators.required],
-      'repeat': ['', Validators.required]
+  /**
+   * SKILLS
+   */
+  openModalSkill(content, object, index) {
+    this.prepareForm(object, index);
+    this.openModal(content);
+  }
+
+  prepareForm(skill: Skill, index?: number) {
+    this.skillEdit = true;
+    this.index = index;
+    if (!skill) {
+      skill = new Skill().deserialize({
+        name: '',
+        content: '',
+        owner: this.profile.id
+      });
+      this.skillEdit = false;
+    }
+    this.skillForm = this.fb.group({
+      'name': [skill.name, Validators.required],
+      'content': [skill.content, Validators.required],
+      'owner': [skill.owner],
+      '_id': [skill['_id']]
     });
+  }
+
+  onSubmitSkill() {
+    if (this.skillEdit) {
+      this.skillsService.updateSkill(this.skillForm.value).subscribe(skill => {
+        this.profile.skills[this.index] = skill;
+        this.modal.close();
+      });
+    } else {
+      this.skillsService.addSkill(this.skillForm.value).subscribe(skill => {
+        this.profile.skills.push(skill);
+        this.modal.close();
+      });
+    }
   }
 
 }

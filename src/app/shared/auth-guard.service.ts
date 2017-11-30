@@ -17,6 +17,9 @@ export class AuthGuardService {
     router: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
+    if (!this.authService.getOwnerId()) {
+      this.router.navigate(['/']);
+    }
     return !!this.authService.getOwnerId();
   }
 
@@ -24,6 +27,9 @@ export class AuthGuardService {
     router: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
+    if (!this.authService.getOwnerId()) {
+      this.router.navigate(['/']);
+    }
     return !!this.authService.getOwnerId();
   }
 

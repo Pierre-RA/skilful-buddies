@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Skill } from '../../shared';
 
@@ -10,10 +10,15 @@ import { Skill } from '../../shared';
 export class CardSkillComponent implements OnInit {
 
   @Input('skill') skill: Skill;
+  @Output() onEdit = new EventEmitter<Skill>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  edit() {
+    this.onEdit.emit(this.skill);
   }
 
 }

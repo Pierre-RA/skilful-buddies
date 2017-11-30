@@ -1,4 +1,4 @@
-<template-header [active]="'profile'" class="top">
+<template-header [active]="'profile'">
   <div class="container pt-3">
     <div class="header" *ngIf="profile">
       <div class="header-left">
@@ -83,10 +83,10 @@
     </div>
 
     <div class="row mt-1" *ngIf="profile">
-      <div class="col-sm-6 my-3" *ngFor="let skill of profile.skills">
-        <template-card-skill [skill]="skill"></template-card-skill>
+      <div class="col-sm-6 my-3" *ngFor="let skill of profile.skills; let i = index">
+        <template-card-skill [skill]="skill" (onEdit)="openModalSkill(editSkill, skill, i)"></template-card-skill>
       </div>
-      <div class="col-sm-6 my-3" *ngFor="let trade of trades">
+      <div class="col-sm-6 my-3" *ngFor="let trade of profile.trades">
         <template-card-trade [trade]="trade"></template-card-trade>
       </div>
     </div>
@@ -110,15 +110,41 @@
 
 <ng-template #editSkill let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h3>Add a new skill</h3>
+    <h3 *ngIf="!skillEdit">Add a new skill</h3>
+    <h3 *ngIf="skillEdit">Edition of {{skillForm.controls['name'].value}}</h3>
   </div>
   <div class="modal-body">
-    <form>
-      ...
+    <form [formGroup]="skillForm" (ngSubmit)="onSubmitSkill()">
+      <div class="form-group">
+        <input type="text" class="form-control"
+          placeholder="name of the skill"
+          formControlName="name">
+      </div>
+      <div class="form-group">
+        <textarea class="form-control"
+          placeholder="Fill in a description of your skill..."
+          rows="5"
+          formControlName="content">
+        </textarea>
+      </div>
+      <p class="text-muted text-center">
+        You can event write the description with
+        <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markup</a>.
+      </p>
       <div class="form-group row">
-        <div class="col-sm-10 text-right">
-          <button type="cancel" class="btn btn-secondary" (click)="d()">Cancel</button>
-          <button type="submit" class="btn btn-warning">Add</button>
+        <div class="col text-right">
+          <button type="cancel" class="btn btn-secondary pointer" (click)="d()">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-warning pointer" *ngIf="!skillEdit">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Add
+          </button>
+          <button type="submit" class="btn btn-warning pointer" *ngIf="skillEdit">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            Update
+          </button>
         </div>
       </div>
     </form>

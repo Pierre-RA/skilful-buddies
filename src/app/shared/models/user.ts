@@ -1,4 +1,5 @@
 import { Serializable } from './serializable';
+import { Skill } from './skill';
 
 export class User implements Serializable<User> {
 
@@ -23,7 +24,7 @@ export class User implements Serializable<User> {
     latitude?: number,
     longitude?: number
   };
-  skills: Array<string>;
+  skills: Array<Skill>;
   friends: Array<User>;
 
   deserialize<User>(input: Object): this {
@@ -45,7 +46,7 @@ export class User implements Serializable<User> {
     if (input['skills']) {
       this.skills = [];
       input['skills'].forEach(skill => {
-        this.skills.push(skill);
+        this.skills.push(new Skill().deserialize(skill));
       });
     }
     if (input['friends']) {
