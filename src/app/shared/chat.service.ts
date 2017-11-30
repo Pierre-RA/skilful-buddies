@@ -9,6 +9,8 @@ import 'rxjs/add/observable/of';
 import { Chat, Message } from './models';
 import { environment } from '../../environments/environment';
 
+import { AuthService } from './auth.service';
+
 @Injectable()
 export class ChatService {
 
@@ -17,22 +19,21 @@ export class ChatService {
   private socket;
   private sub: BehaviorSubject<Chat>;
   private current: Chat;
-  private token: string;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) {
     this.chatBase = environment.chatBase;
     this.apiBase = environment.apiBase;
     this.current = null;
     this.sub = new BehaviorSubject<Chat>(null);
-    this.token = window.localStorage.getItem('token');
   }
 
   getHeaders(): Observable<Array<Chat>> {
     return this.http.get<Array<Chat>>(
       this.apiBase + 'chat', {
-        headers: new HttpHeaders().set('Authorization', 'JWT ' + this.token)
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + this.authService.getToken())
       })
       .catch(err => {
         return Observable.of(null);

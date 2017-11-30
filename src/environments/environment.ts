@@ -7,5 +7,7 @@ export const environment = {
   production: false,
   apiBase: 'http://localhost:3000/',
   mapsAPI: 'AIzaSyDRiIvpd4VwvHRz2MJJlBILCv3vVuzpUZg',
-  chatBase: 'http://localhost:3000/'
+  chatBase: 'http://localhost:3000/',
+  facebookAppId: '1465809513539908',
+  facebookVersion: 'v2.11'
 };

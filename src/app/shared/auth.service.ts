@@ -31,8 +31,8 @@ export class AuthService {
     this.jwtHelper = new JwtHelper();
     this.apiBase = environment.apiBase;
     fb.init({
-      appId: '1465809513539908',
-      version: 'v2.11'
+      appId: environment.facebookAppId,
+      version: environment.facebookVersion
     });
     this.sub = new BehaviorSubject<User>(null);
     this.usersService.getUser(this.getOwnerId())
@@ -51,6 +51,10 @@ export class AuthService {
       return this.jwtHelper.decodeToken(sessionToken)['id'];
     }
     return null;
+  }
+
+  getToken(): string {
+    return window.localStorage.getItem('session-token');
   }
 
   isLoggedIn(): Observable<boolean> {
