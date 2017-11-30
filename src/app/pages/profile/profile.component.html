@@ -54,7 +54,7 @@
               <i class="fa fa-fw fa-certificate"></i>
               add skill
             </button>
-            <button class="btn btn-light" (click)="openModal(editTrade)">
+            <button class="btn btn-light" (click)="openModalTrade(editTrade)">
               <i class="fa fa-fw fa-balance-scale"></i>
               add trade
             </button>
@@ -131,7 +131,7 @@
         </textarea>
       </div>
       <p class="text-muted text-center">
-        You can event write the description with
+        You can even write the description with
         <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markup</a>.
       </p>
       <div class="form-group row">
@@ -165,9 +165,55 @@
 
 <ng-template #editTrade let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h3>Add a new trade</h3>
+    <h3 *ngIf="!tradeEdit">Add a new trade</h3>
+    <h3 *ngIf="tradeEdit">Edition of {{tradeForm.controls['name'].value}}</h3>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
   <div class="modal-body">
-
+    <form [formGroup]="tradeForm" (ngSubmit)="onSubmitTrade()">
+      <div class="form-group">
+        <input type="text" class="form-control"
+          placeholder="name of the trade"
+          formControlName="name">
+      </div>
+      <div class="form-group">
+        <textarea class="form-control"
+          placeholder="Fill in a description of your trade..."
+          rows="5"
+          formControlName="content">
+        </textarea>
+      </div>
+      <p class="text-muted text-center">
+        You can even write the description with
+        <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markup</a>.
+      </p>
+      <div class="form-group row">
+        <div class="col text-right">
+          <button type="cancel" class="btn btn-secondary pointer" (click)="d()">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-warning pointer" *ngIf="!tradeEdit">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Add
+          </button>
+          <button type="submit" class="btn btn-warning pointer" *ngIf="tradeEdit">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            Update
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer" *ngIf="tradeEdit">
+    <span class="text-muted w-100 text-left">
+      Is this trade no longer useful?
+    </span>
+    <button class="btn btn-danger pointer" (click)="removeTrade()">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+      Delete
+    </button>
   </div>
 </ng-template>

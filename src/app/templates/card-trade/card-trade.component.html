@@ -11,9 +11,14 @@
         <a [routerLink]="['']">IT</a>
       </span>
     </p>
+    <p class="edition" *ngIf="editable">
+      <button class="btn btn-link pointer" (click)="edit()">
+        <i class="fa fa-fw fa-pencil" aria-hidden="true"></i>
+      </button>
+    </p>
   </div>
   <p class="content">
-    {{trade.content}}
+    <markdown [data]="trade.content"></markdown>
   </p>
   <div class="footer">
     <div class="row">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Trade } from '../../shared';
 
@@ -10,6 +10,8 @@ import { Trade } from '../../shared';
 export class CardTradeComponent implements OnInit {
 
   @Input('trade') trade: Trade;
+  @Input('editable') editable: boolean;
+  @Output() onEdit = new EventEmitter<Trade>();
 
   constructor() { }
 

@@ -10,6 +10,7 @@ import { User, Skill, Trade } from '../../shared';
 import { UsersService } from '../../shared/users.service';
 import { AuthService } from '../../shared/auth.service';
 import { SkillsService } from '../../shared/skills.service';
+import { TradeService } from '../../shared/trade.service';
 
 @Component({
   selector: 'app-profile',
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit {
     private usersService: UsersService,
     private authService: AuthService,
     private skillsService: SkillsService,
+    private tradeService: TradeService,
     private router: Router,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -56,6 +58,8 @@ export class ProfileComponent implements OnInit {
 
   getProfile(user: User) {
     this.profile = user;
+    this.profile.skills = this.profile.skills || [];
+    this.profile.trades = this.profile.trades || [];
     this.fillPlace();
   }
 
@@ -112,11 +116,11 @@ export class ProfileComponent implements OnInit {
    * SKILLS
    */
   openModalSkill(content, object, index) {
-    this.prepareForm(object, index);
+    this.prepareSkillForm(object, index);
     this.openModal(content);
   }
 
-  prepareForm(skill: Skill, index?: number) {
+  prepareSkillForm(skill: Skill, index?: number) {
     this.skillEdit = true;
     this.index = index;
     if (!skill) {
@@ -159,4 +163,55 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  /**
+   * TRADES
+   */
+   openModalTrade(content, object, index) {
+     this.prepareTradeForm(object, index);
+     this.openModal(content);
+   }
+
+   prepareTradeForm(trade: Trade, index?: number) {
+     this.tradeEdit = true;
+     this.index = index;
+     if (!trade) {
+        trade = new Trade().deserialize({
+         name: '',
+         content: '',
+         owner: this.profile['_id'],
+         // TODO: PRICE!!!
+       });
+       this.tradeEdit = false;
+     }
+     this.tradeForm = this.fb.group({
+       'name': [trade.name, Validators.required],
+       'content': [trade.content, Validators.required],
+       'owner': [trade.owner],
+       '_id': [trade['_id']]
+     });
+   }
+
+   onSubmitTrade() {
+     if (this.tradeEdit) {
+       this.tradeService.updateTrade(this.tradeForm.value).subscribe(trade => {
+         this.profile.trades[this.index] = trade;
+         this.modal.close();
+       });
+     } else {
+       if (!this.tradeForm.value['_id']) {
+         delete this.tradeForm.value['_id'];
+       }
+       this.tradeService.addTrade(this.tradeForm.value).subscribe(trade => {
+         this.profile.trades.push(trade);
+         this.modal.close();
+       });
+     }
+   }
+
+   removeTrade(trade: Trade) {
+     this.tradeService.removeTrade(this.tradeForm.value).subscribe(trade => {
+       this.profile.trades.splice(this.index, 1);
+       this.modal.close();
+     })
+   }
 }
