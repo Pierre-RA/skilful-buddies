@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit {
   userSub: Subscription;
   chatSub: Subscription;
   modal: NgbModalRef;
+  noChat: boolean;
 
   constructor(
     private chatService: ChatService,
@@ -40,6 +41,7 @@ export class ChatComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: NgbModal
   ) {
+    this.noChat = false;
     this.textBoxStatus = false;
     this.active = '';
     let userSub = this.authService.getOwner()
@@ -48,7 +50,8 @@ export class ChatComponent implements OnInit {
       });
     this.chatService.getHeaders().subscribe(chats => {
       this.chats = chats;
-      if (this.chats.length > 0) {
+      if (this.chats && this.chats.length > 0) {
+        this.noChat = false;
         this.active = this.chats[0]['_id'];
         this.chatService.getContent(this.active).subscribe(chat => {
           this.current = chat;
@@ -56,8 +59,10 @@ export class ChatComponent implements OnInit {
             this.current = new Chat().deserialize({});
           }
         });
+        this.openSocket(this.active);
+      } else {
+        this.noChat = true;
       }
-      this.openSocket(this.active);
     });
     this.form = this.fb.group({
       'content': ['', Validators.required]
@@ -69,7 +74,9 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.userSub.unsubscribe();
+    if (this.chatSub) {
+      this.userSub.unsubscribe();
+    }
     if (this.chatSub) {
       this.chatSub.unsubscribe();
     }
@@ -150,6 +157,7 @@ export class ChatComponent implements OnInit {
       ).subscribe(data => {
         this.modal.close();
         this.chats.push(data);
+        this.noChat = false;
         this.goToChat(data['_id']);
       });
     }

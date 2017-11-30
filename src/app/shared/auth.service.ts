@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FacebookService, LoginOptions, LoginResponse } from 'ngx-facebook';
+import { JwtHelper } from 'angular2-jwt';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -19,6 +20,7 @@ export class AuthService {
   redirectUrl: string;
   sub: BehaviorSubject<User>;
   profile: User;
+  jwtHelper: JwtHelper;
 
   constructor(
     private router: Router,
@@ -26,13 +28,14 @@ export class AuthService {
     private fb: FacebookService,
     private usersService: UsersService
   ) {
+    this.jwtHelper = new JwtHelper();
     this.apiBase = environment.apiBase;
     fb.init({
       appId: '1465809513539908',
       version: 'v2.11'
     });
     this.sub = new BehaviorSubject<User>(null);
-    this.usersService.getOwner()
+    this.usersService.getUser(this.getOwnerId())
       .subscribe(user => {
         this.sub.next(user);
       });
@@ -43,17 +46,17 @@ export class AuthService {
   }
 
   getOwnerId(): string {
-    return window.localStorage.getItem('profile_id');
+    const sessionToken = window.localStorage.getItem('session-token');
+    if (sessionToken) {
+      return this.jwtHelper.decodeToken(sessionToken)['id'];
+    }
+    return null;
   }
 
   isLoggedIn(): Observable<boolean> {
     return this.sub.asObservable().map(user => {
       return !!user;
     });
-  }
-
-  getProfilePicture(): string {
-    return window.localStorage.getItem('profile_picture');
   }
 
   facebookLogin() {
@@ -65,28 +68,23 @@ export class AuthService {
 
     this.fb.login(loginOptions)
       .then((res: LoginResponse) => {
-        window.localStorage.setItem('token', res.authResponse.accessToken);
-        // window.localStorage.setItem('dat', JSON.stringify(res.authResponse));
-        this.serverLogin();
+        this.serverLogin(res.authResponse.accessToken);
       });
   }
 
-  serverLogin() {
+  serverLogin(token) {
     this.http.post(
       this.apiBase + 'users/facebook',
-      { 'access_token': window.localStorage.getItem('token') })
-      .subscribe((data: User) => {
-        window.localStorage.setItem('profile', JSON.stringify(data));
-        window.localStorage.setItem('profile_id', data['_id']);
-        this.sub.next(data);
-        this.router.navigate(['/profile/', data['_id']]);
+      { 'access_token': token })
+      .subscribe((data: {token: string, user: User}) => {
+        window.localStorage.setItem('session-token', data.token);
+        this.sub.next(data.user);
+        this.router.navigate(['/profile/', data.user['_id']]);
       });
   }
 
   logout() {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('profile');
-    window.localStorage.removeItem('profile_id');
+    window.localStorage.removeItem('session-token');
     this.sub.next(null);
     this.router.navigate(['/']);
   }

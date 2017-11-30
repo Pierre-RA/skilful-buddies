@@ -38,6 +38,9 @@
   color: rgba(0,0,0,0.6);
   text-align: center;
   padding: 20px;
+  .fa-comments {
+    cursor: pointer;
+  }
 }
 
 .chat-header {

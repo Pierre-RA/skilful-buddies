@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as io from 'socket.io-client';
 
 import { Observable } from 'rxjs/Observable';
@@ -17,6 +17,7 @@ export class ChatService {
   private socket;
   private sub: BehaviorSubject<Chat>;
   private current: Chat;
+  private token: string;
 
   constructor(
     private http: HttpClient
@@ -25,10 +26,14 @@ export class ChatService {
     this.apiBase = environment.apiBase;
     this.current = null;
     this.sub = new BehaviorSubject<Chat>(null);
+    this.token = window.localStorage.getItem('token');
   }
 
   getHeaders(): Observable<Array<Chat>> {
-    return this.http.get<Array<Chat>>(this.apiBase + 'chat')
+    return this.http.get<Array<Chat>>(
+      this.apiBase + 'chat', {
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + this.token)
+      })
       .catch(err => {
         return Observable.of(null);
       });

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/publishReplay';
+import 'rxjs/add/observable/of';
 
 import { environment } from '../../environments/environment';
 import { User, PartialFriendList } from './models';
@@ -11,7 +12,6 @@ import { User, PartialFriendList } from './models';
 export class UsersService {
 
   apiBase: string;
-  owner: Observable<User>;
 
   constructor(
     private http: HttpClient
@@ -24,7 +24,11 @@ export class UsersService {
   }
 
   getUser(id: string): Observable<User> {
-    return this.http.get<User>(this.apiBase + 'users/' + id);
+    if (id) {
+      return this.http.get<User>(this.apiBase + 'users/' + id);
+    } else {
+      return Observable.of(null);
+    }
   }
 
   getUserFriends(id: string, like: string): Observable<PartialFriendList> {
@@ -43,15 +47,6 @@ export class UsersService {
     return this.http.put<User>(this.apiBase + 'users/geocode/' + id, {
       address: address
     });
-  }
-
-  getOwner(): Observable<User> {
-    if (!this.owner) {
-      let id = window.localStorage.getItem('profile_id');
-      this.owner = this.http.get<User>(this.apiBase + 'users/' + id);
-      // TODO: add publishReplay(1)
-    }
-    return this.owner;
   }
 
 }

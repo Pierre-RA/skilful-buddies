@@ -49,9 +49,12 @@
           <i class="fa fa-fw fa-pencil-square-o" (click)="addChat(chatModal)"></i>
         </p>
       </div>
-      <div class="loading-headers" *ngIf="!chats">
+      <div class="loading-headers" *ngIf="!chats && !noChat">
         <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         <span class="sr-only">Loading...</span>
+      </div>
+      <div class="loading-headers" *ngIf="!chats && noChat">
+        <i class="fa fa-comments fa-2x fa-fw" (click)="addChat(chatModal)"></i>
       </div>
       <div *ngIf="chats">
         <div class="people-card" [ngClass]="{'people-active': active == chat._id}" *ngFor="let chat of chats" (click)="goToChat(chat._id)">

@@ -45,8 +45,11 @@ export class HeaderComponent implements OnInit {
   }
 
   getProfile(user: User) {
-    this.homeURI = user ? '/profile/' + user.id : '';
-    this.profile = user;
+    this.homeURI = '/';
+    if (user) {
+      this.homeURI = user ? '/profile/' + user.id : '';
+      this.profile = user;
+    }
   }
 
   getUsersNotifications() {
