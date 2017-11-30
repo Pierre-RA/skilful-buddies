@@ -14,6 +14,7 @@ import { AuthService } from '../../shared/auth.service';
 export class HeaderComponent implements OnInit {
 
   @Input('active') active: string;
+  @Input('fixed') fixed: boolean;
   profile: User;
   sub: Subscription;
   homeURI: string;

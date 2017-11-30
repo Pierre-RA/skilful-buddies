@@ -57,11 +57,7 @@ export class ChatComponent implements OnInit {
           }
         });
       }
-    });
-    let chatSub = this.chatService.getMessage().subscribe(data => {
-      if (!this.isOwner(data['message']['user'])) {
-        this.current.messages.push(data['message']);
-      }
+      this.openSocket(this.active);
     });
     this.form = this.fb.group({
       'content': ['', Validators.required]
@@ -98,6 +94,20 @@ export class ChatComponent implements OnInit {
     this.chatService.getContent(id).subscribe(chat => {
       this.active = id;
       this.current = chat;
+      this.openSocket(this.active);
+    });
+  }
+
+  openSocket(id: string) {
+    this.chatService.joinRoom(id, this.profile.name);
+    this.chatSub = this.chatService.getMessage().subscribe(data => {
+      if (!this.isOwner(data['user'])) {
+        this.current.messages.push({
+          user: data['user'],
+          text: data['text'],
+          date: data['date']
+        });
+      }
     });
   }
 

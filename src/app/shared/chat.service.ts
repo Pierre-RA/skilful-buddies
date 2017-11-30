@@ -43,8 +43,8 @@ export class ChatService {
 
   getMessage(): Observable<Message> {
     let observable = new Observable<Message>(observer => {
-        this.socket = io(this.chatBase);
         this.socket.on('message', (data) => {
+          console.log(data);
           observer.next(data);
         });
         return () => {
@@ -61,6 +61,14 @@ export class ChatService {
       text: message.text,
       date: message.date
     });
+  }
+
+  joinRoom(id: string, name: string) {
+    if (!this.socket) {
+      this.socket = io(this.chatBase);
+      this.socket.emit('send-hello', name);
+    }
+    this.socket.emit('join-room', id);
   }
 
   addChat(user1: string, user2: string, title: string): Observable<Chat> {

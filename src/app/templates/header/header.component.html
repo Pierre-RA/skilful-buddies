@@ -1,4 +1,4 @@
-<header>
+<header [ngClass]="{'header-fixed': fixed}">
   <h1 class="title"><a class="skilful-buddies" [routerLink]="[homeURI]">Skilful Buddies</a></h1>
   <div class="pinned-right">
     <span class="block blk-grey" *ngIf="profile">
