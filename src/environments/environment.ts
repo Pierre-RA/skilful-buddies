@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   apiBase: 'http://localhost:3000/',
   mapsAPI: 'AIzaSyDRiIvpd4VwvHRz2MJJlBILCv3vVuzpUZg',
   chatBase: 'http://localhost:3000/',
